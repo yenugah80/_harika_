@@ -9,7 +9,7 @@ const values = [
     icon: Brain,
     title: 'End-to-End AI Delivery',
     description:
-      'From POC to production — I own the full ML lifecycle: data pipelines, model development, deployment, monitoring, and continuous improvement at scale.',
+      'From POC to production, I own the full ML lifecycle: data pipelines, model development, deployment, monitoring, and continuous improvement at scale.',
   },
   {
     icon: Users,
@@ -21,7 +21,7 @@ const values = [
     icon: Rocket,
     title: 'Ship Fast, Scale Smart',
     description:
-      'Building production-grade systems with MLOps best practices — CI/CD pipelines, A/B testing, model governance, and observability built-in from day one.',
+      'Building production-grade systems with MLOps best practices: CI/CD pipelines, A/B testing, model governance, and observability built-in from day one.',
   },
 ]
 
@@ -43,7 +43,7 @@ export function About() {
               8+ years of hands-on experience building and deploying ML systems that drive measurable impact.
               From fraud detection at <span className="text-secondary font-medium">Bank of America</span> to
               retail analytics at <span className="text-accent font-medium">Apple</span> to GenAI platforms at{' '}
-              <span className="text-primary font-medium">Macy&apos;s</span> — I thrive at the intersection of
+              <span className="text-primary font-medium">Macy&apos;s</span>, I thrive at the intersection of
               cutting-edge AI research and production engineering.
             </p>
           </div>
@@ -54,14 +54,19 @@ export function About() {
           {values.map((value, index) => (
             <RevealOnScroll key={index} delay={index * 0.1}>
               <motion.div
-                className="glass rounded-2xl p-8 h-full hover-card group"
-                whileHover={{ y: -5 }}
+                className="glass rounded-2xl p-8 h-full hover-card group card-shine inner-light"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center mb-6 group-hover:glow transition-all duration-300">
-                  <value.icon className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                <p className="text-muted-foreground">{value.description}</p>
+                <motion.div
+                  className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center mb-6 group-hover:glow transition-all duration-500"
+                  whileHover={{ rotate: [0, -5, 5, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <value.icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform duration-300" />
+                </motion.div>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">{value.title}</h3>
+                <p className="text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">{value.description}</p>
               </motion.div>
             </RevealOnScroll>
           ))}

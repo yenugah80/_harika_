@@ -152,7 +152,7 @@ export function Skills() {
               Battle-Tested <span className="gradient-text">Stack</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Production-proven technologies across the ML lifecycle — from data ingestion
+              Production-proven technologies across the ML lifecycle, from data ingestion
               to model deployment, monitoring, and beyond.
             </p>
           </div>
@@ -163,35 +163,43 @@ export function Skills() {
           {skillCategories.map((category, index) => (
             <RevealOnScroll key={index} delay={index * 0.05}>
               <motion.div
-                className="glass rounded-2xl p-6 h-full hover-card group"
-                whileHover={{ y: -5 }}
+                className="glass rounded-2xl p-6 h-full hover-card group card-shine inner-light glow-ring"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
                 <div
-                  className={`w-12 h-12 rounded-xl bg-${category.color}/10 border border-${category.color}/30 flex items-center justify-center mb-4 group-hover:glow transition-all duration-300`}
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:glow transition-all duration-500 group-hover:scale-110"
                   style={{
                     background: `hsl(var(--${category.color}) / 0.1)`,
+                    borderWidth: '1px',
                     borderColor: `hsl(var(--${category.color}) / 0.3)`,
                   }}
                 >
                   <category.icon
-                    className="w-6 h-6"
+                    className="w-6 h-6 transition-transform duration-300 group-hover:rotate-12"
                     style={{ color: `hsl(var(--${category.color}))` }}
                   />
                 </div>
-                <h3 className="text-lg font-bold mb-4">{category.title}</h3>
+                <h3 className="text-lg font-bold mb-4 group-hover:text-primary transition-colors duration-300">{category.title}</h3>
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, i) => (
-                    <span
+                    <motion.span
                       key={i}
-                      className={`badge-${category.color} text-xs`}
+                      className="text-xs px-3 py-1 rounded-full border cursor-default"
                       style={{
                         background: `hsl(var(--${category.color}) / 0.1)`,
                         color: `hsl(var(--${category.color}))`,
                         borderColor: `hsl(var(--${category.color}) / 0.3)`,
                       }}
+                      whileHover={{
+                        scale: 1.1,
+                        y: -2,
+                        backgroundColor: `hsl(var(--${category.color}) / 0.2)`,
+                      }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 17 }}
                     >
                       {skill}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </motion.div>

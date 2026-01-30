@@ -55,7 +55,7 @@ export function Contact() {
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               I&apos;m actively exploring senior AI/ML roles where I can drive impact at scale.
-              If you&apos;re building something ambitious with LLMs, MLOps, or data platforms — let&apos;s connect.
+              If you&apos;re building something ambitious with LLMs, MLOps, or data platforms, let&apos;s connect.
             </p>
           </div>
         </RevealOnScroll>
@@ -71,7 +71,7 @@ export function Contact() {
             </h3>
             <p className="text-muted-foreground max-w-xl mx-auto mb-8">
               Whether it&apos;s a full-time role, consulting engagement, or just a conversation
-              about AI — I respond to every message. Let&apos;s see what we can build.
+              about AI, I respond to every message. Let&apos;s see what we can build.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <motion.a
@@ -107,26 +107,38 @@ export function Contact() {
                 href={link.href}
                 target={link.label !== 'Email' ? '_blank' : undefined}
                 rel={link.label !== 'Email' ? 'noopener noreferrer' : undefined}
-                className="glass rounded-2xl p-6 text-center hover-card group block"
-                whileHover={{ y: -5 }}
+                className="glass rounded-2xl p-6 text-center hover-card group block card-shine depth-shadow"
+                whileHover={{ y: -8, scale: 1.03 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                <div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:glow transition-all duration-300"
+                <motion.div
+                  className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 transition-all duration-500"
                   style={{
                     background: `hsl(var(--${link.color}) / 0.1)`,
                     borderWidth: '1px',
                     borderColor: `hsl(var(--${link.color}) / 0.3)`,
                   }}
+                  whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
                 >
                   <link.icon
-                    className="w-7 h-7"
+                    className="w-7 h-7 group-hover:animate-pulse"
                     style={{ color: `hsl(var(--${link.color}))` }}
                   />
-                </div>
-                <h4 className="font-bold mb-1 group-hover:text-primary transition-colors">
+                </motion.div>
+                <h4 className="font-bold mb-1 group-hover:text-primary transition-colors duration-300">
                   {link.label}
                 </h4>
-                <p className="text-sm text-muted-foreground">{link.description}</p>
+                <p className="text-sm text-muted-foreground group-hover:text-foreground/70 transition-colors duration-300">{link.description}</p>
+                <motion.div
+                  className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  initial={{ y: 5 }}
+                  whileHover={{ y: 0 }}
+                >
+                  <span className="text-xs font-medium" style={{ color: `hsl(var(--${link.color}))` }}>
+                    Click to connect →
+                  </span>
+                </motion.div>
               </motion.a>
             </RevealOnScroll>
           ))}
