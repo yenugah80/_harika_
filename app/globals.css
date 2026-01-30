@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Dark theme - primary colors */
+  --background: 240 10% 4%;
+  --foreground: 0 0% 98%;
+
+  /* Primary - Indigo */
+  --primary: 239 84% 67%;
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Cyan */
+  --secondary: 189 94% 43%;
+  --secondary-foreground: 0 0% 100%;
+
+  /* Accent - Purple */
+  --accent: 270 91% 65%;
+  --accent-foreground: 0 0% 100%;
+
+  /* Muted */
+  --muted: 240 5% 15%;
+  --muted-foreground: 240 5% 65%;
+
+  /* Card */
+  --card: 240 6% 10%;
+  --card-foreground: 0 0% 98%;
+
+  /* Border */
+  --border: 240 5% 20%;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.7);
+}
+
+/* Selection */
+::selection {
+  background: hsl(var(--primary) / 0.3);
+  color: hsl(var(--foreground));
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effect utility */
+.glow {
+  box-shadow: 0 0 20px hsl(var(--primary) / 0.3),
+              0 0 40px hsl(var(--primary) / 0.2),
+              0 0 60px hsl(var(--primary) / 0.1);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px hsl(var(--primary) / 0.5),
+               0 0 20px hsl(var(--primary) / 0.3);
+}
+
+/* Card glass effect */
+.glass {
+  background: hsl(var(--card) / 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+/* Animated gradient border */
+.gradient-border {
+  position: relative;
+  border-radius: 1rem;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Section spacing */
+.section {
+  @apply py-20 md:py-32 px-4 md:px-8;
+}
+
+/* Container */
+.container-custom {
+  @apply max-w-7xl mx-auto;
+}
+
+/* Hover card effect */
+.hover-card {
+  @apply transition-all duration-300;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -15px hsl(var(--primary) / 0.2);
+}
+
+/* Button styles */
+.btn-primary {
+  @apply px-6 py-3 rounded-lg font-medium transition-all duration-300;
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+  box-shadow: 0 4px 15px hsl(var(--primary) / 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px hsl(var(--primary) / 0.5);
+}
+
+.btn-outline {
+  @apply px-6 py-3 rounded-lg font-medium transition-all duration-300 border;
+  border-color: hsl(var(--primary));
+  color: hsl(var(--primary));
+}
+
+.btn-outline:hover {
+  background: hsl(var(--primary) / 0.1);
+  transform: translateY(-2px);
+}
+
+/* Timeline styles */
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, hsl(var(--primary)), hsl(var(--secondary)));
+}
+
+.timeline-dot {
+  @apply w-4 h-4 rounded-full absolute -left-[7px];
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+  box-shadow: 0 0 0 4px hsl(var(--background)), 0 0 20px hsl(var(--primary) / 0.5);
+}
+
+/* Badge styles */
+.badge {
+  @apply px-3 py-1 text-xs font-medium rounded-full;
+  background: hsl(var(--primary) / 0.15);
+  color: hsl(var(--primary));
+  border: 1px solid hsl(var(--primary) / 0.3);
+}
+
+.badge-secondary {
+  background: hsl(var(--secondary) / 0.15);
+  color: hsl(var(--secondary));
+  border: 1px solid hsl(var(--secondary) / 0.3);
+}
+
+.badge-accent {
+  background: hsl(var(--accent) / 0.15);
+  color: hsl(var(--accent));
+  border: 1px solid hsl(var(--accent) / 0.3);
+}
+
+/* Canvas background overlay */
+.canvas-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Noise texture overlay */
+.noise::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1000;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}

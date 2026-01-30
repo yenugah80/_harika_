@@ -1,0 +1,25 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'miro.medium.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn-images-1.medium.com',
+      },
+    ],
+  },
+}
+
+export default nextConfig
