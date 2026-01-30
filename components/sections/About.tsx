@@ -7,21 +7,21 @@ import { RevealOnScroll } from '@/components/animations/RevealOnScroll'
 const values = [
   {
     icon: Brain,
-    title: 'The Full Journey',
+    title: 'End-to-End Ownership',
     description:
-      'I learned early that ideas without execution are just dreams. So I became the person who takes AI from whiteboard sketches to systems handling millions of requests. Every pipeline, every model, every deployment teaches me something new.',
+      'I own the full stack: data pipelines, model training, deployment, monitoring. No handoffs, no "that\'s not my job." When something breaks at 2am, I fix it.',
   },
   {
     icon: Users,
-    title: 'Building Bridges',
+    title: 'Business First',
     description:
-      'The best AI solutions come from understanding people, not just data. I spend as much time listening to business leaders and end users as I do writing code. That&apos;s how technology becomes transformation.',
+      'I start with the problem, not the tech. Stakeholders don\'t care about your architecture—they care if it works. I translate ML capabilities into business outcomes.',
   },
   {
     icon: Rocket,
-    title: 'Shipping is Learning',
+    title: 'Production or Nothing',
     description:
-      'I believe in getting things into production quickly, then iterating relentlessly. Perfect is the enemy of shipped. MLOps, testing, monitoring... they&apos;re not overhead, they&apos;re how you learn what actually works.',
+      'Jupyter notebooks don\'t count. I measure success by what\'s running in prod, handling real traffic, making real money. MLOps isn\'t overhead—it\'s the job.',
   },
 ]
 
@@ -40,12 +40,12 @@ export function About() {
               <span className="gradient-text">The Code</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Eight years ago, I wrote my first machine learning model. It was messy, slow, and barely worked.
-              But watching data transform into insight sparked something. Since then, I&apos;ve chased that feeling
-              through <span className="text-accent font-medium">Apple&apos;s</span> retail floors,{' '}
-              <span className="text-secondary font-medium">Bank of America&apos;s</span> trading systems, and now{' '}
-              <span className="text-primary font-medium">Macy&apos;s</span> GenAI revolution. Each stop added a new
-              chapter to my understanding of what AI can become when it meets real problems.
+              I spent 8 years learning that the hard part of AI isn&#39;t the model—it&#39;s everything else.
+              Data quality. Latency. Edge cases. Stakeholder buy-in. Prod incidents at 3am.
+              Built retail forecasting at <span className="text-secondary font-medium">Apple</span>,
+              fraud detection at <span className="text-accent font-medium">Bank of America</span>,
+              and now GenAI infrastructure at <span className="text-primary font-medium">Macy&#39;s</span>.
+              Each role taught me that shipping beats perfecting.
             </p>
           </div>
         </RevealOnScroll>

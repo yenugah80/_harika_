@@ -5,17 +5,17 @@ import { ArrowDown, MapPin, Sparkles, Zap, Code2, Brain, Database, Cloud, Cpu } 
 import { TextRotator } from '@/components/animations/TextRotator'
 
 const roles = [
-  'LLMs that reason, not just respond',
-  'agents that solve, not just suggest',
-  'RAG systems with perfect recall',
-  'ML pipelines that scale to billions',
-  'AI that humans actually trust',
+  'RAG that actually retrieves',
+  'agents that close tickets, not create them',
+  'fraud models protecting $2B daily',
+  'LLM apps with sub-2s latency',
+  'ML that survived Black Friday',
 ]
 
 const stats = [
-  { value: '8+', label: 'Years Building ML Systems', icon: Zap },
-  { value: '3', label: 'Fortune 500 Companies', icon: Code2 },
-  { value: '50+', label: 'Models in Production', icon: Sparkles },
+  { value: '8+', label: 'Years Deep in ML', icon: Zap },
+  { value: '$2B+', label: 'Protected Daily', icon: Code2 },
+  { value: '99.9%', label: 'Uptime Shipped', icon: Sparkles },
 ]
 
 // Floating tech icons around the hero
@@ -108,9 +108,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
           >
-            I&apos;m{' '}
-            <span className="gradient-text">Harika</span>
-            <span className="text-muted-foreground">,</span>
+            <span className="gradient-text">Harika Yenuga</span>
           </motion.h1>
 
           {/* Role */}
@@ -120,8 +118,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-4"
           >
-            I build <span className="text-foreground font-semibold">production AI</span>
-            {' '}— shipping
+            Senior AI/ML Engineer shipping
           </motion.div>
 
           <motion.div
@@ -140,10 +137,10 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8"
           >
-            From training ML models at{' '}
-            <span className="text-secondary font-medium">Apple</span>, to building fraud detection at{' '}
-            <span className="text-accent font-medium">Bank of America</span>, to now architecting GenAI platforms at{' '}
-            <span className="text-primary font-medium">Macy&apos;s</span>—I turn AI research into systems that millions of people actually use.
+            Currently leading GenAI at{' '}
+            <span className="text-primary font-medium">Macy&#39;s</span>. Previously caught fraud at{' '}
+            <span className="text-accent font-medium">Bank of America</span> and built retail ML at{' '}
+            <span className="text-secondary font-medium">Apple</span>. I ship AI that works Monday morning, not just in notebooks.
           </motion.p>
 
           {/* Location */}
@@ -181,7 +178,7 @@ export function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Let&apos;s Connect
+              LinkedIn
             </motion.a>
           </motion.div>
 
