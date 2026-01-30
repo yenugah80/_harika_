@@ -9,7 +9,7 @@ import {
   Bot,
   Sparkles,
   TrendingUp,
-  BarChart3,
+  Search,
 } from 'lucide-react'
 import { RevealOnScroll } from '@/components/animations/RevealOnScroll'
 
@@ -72,13 +72,13 @@ const projects = [
     color: 'primary',
   },
   {
-    title: 'Executive Analytics Suite',
-    subtitle: 'C-Suite Decision Intelligence',
+    title: 'Neural Search Engine',
+    subtitle: 'Semantic Retrieval at Scale',
     description:
-      'Executives asking "how are we doing?" should not wait days for answers. Built real-time dashboards that refresh every 15 minutes, tracking billions in KPIs. The best feedback? "I check this before my morning coffee." That is the impact I chase.',
-    icon: BarChart3,
-    technologies: ['Tableau', 'Power BI', 'SQL', 'Python', 'Airflow'],
-    link: 'https://github.com/yenugah80/AnalyticsDashboardData',
+      'Google search is great, but what if you could search by meaning instead of keywords? Built a semantic search system that understands context, handles synonyms, and returns relevant results even when exact terms are missing. 10M+ documents indexed, sub-100ms latency.',
+    icon: Search,
+    technologies: ['FAISS', 'Sentence Transformers', 'FastAPI', 'Redis', 'Docker'],
+    link: 'https://github.com/yenugah80',
     color: 'secondary',
   },
 ]

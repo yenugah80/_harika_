@@ -5,17 +5,17 @@ import { ArrowDown, MapPin, Sparkles, Zap, Code2, Brain, Database, Cloud, Cpu } 
 import { TextRotator } from '@/components/animations/TextRotator'
 
 const roles = [
-  'AI that tells a story with data',
-  'systems that grow with your ambition',
-  'models that earn trust through transparency',
-  'pipelines that work while you sleep',
-  'intelligence that amplifies human potential',
+  'LLMs that reason, not just respond',
+  'agents that solve, not just suggest',
+  'RAG systems with perfect recall',
+  'ML pipelines that scale to billions',
+  'AI that humans actually trust',
 ]
 
 const stats = [
-  { value: '8+', label: 'Years of Learning & Building', icon: Zap },
-  { value: '3', label: 'Fortune 500 Chapters', icon: Code2 },
-  { value: '50+', label: 'AI Stories Shipped', icon: Sparkles },
+  { value: '8+', label: 'Years Building ML Systems', icon: Zap },
+  { value: '3', label: 'Fortune 500 Companies', icon: Code2 },
+  { value: '50+', label: 'Models in Production', icon: Sparkles },
 ]
 
 // Floating tech icons around the hero
@@ -120,8 +120,8 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-4"
           >
-            I architect <span className="text-foreground font-semibold">AI systems</span>
-            {' '}that ship
+            I build <span className="text-foreground font-semibold">production AI</span>
+            {' '}— shipping
           </motion.div>
 
           <motion.div
@@ -140,10 +140,10 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8"
           >
-            My journey started with a fascination for making machines learn. From building analytics at{' '}
-            <span className="text-secondary font-medium">Apple</span>, to protecting billions at{' '}
-            <span className="text-accent font-medium">Bank of America</span>, to now pioneering GenAI at{' '}
-            <span className="text-primary font-medium">Macy&apos;s</span>, every chapter taught me that the best AI tells a story humans can trust.
+            From training ML models at{' '}
+            <span className="text-secondary font-medium">Apple</span>, to building fraud detection at{' '}
+            <span className="text-accent font-medium">Bank of America</span>, to now architecting GenAI platforms at{' '}
+            <span className="text-primary font-medium">Macy&apos;s</span>—I turn AI research into systems that millions of people actually use.
           </motion.p>
 
           {/* Location */}

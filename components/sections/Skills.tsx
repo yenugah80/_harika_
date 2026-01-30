@@ -98,15 +98,15 @@ const skillCategories = [
   },
   {
     icon: BarChart3,
-    title: 'Telling Stories with Data',
+    title: 'Making AI Understandable',
     color: 'accent',
     skills: [
-      'Power BI',
-      'Tableau',
-      'Matplotlib',
-      'Seaborn',
-      'Plotly',
-      'TIBCO Spotfire',
+      'Model Explainability',
+      'SHAP Visualizations',
+      'Attention Maps',
+      'Embedding Projections',
+      'Streamlit Dashboards',
+      'Gradio Interfaces',
     ],
   },
   {
