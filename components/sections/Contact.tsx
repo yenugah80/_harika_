@@ -48,14 +48,14 @@ export function Contact() {
       <div className="container-custom mx-auto">
         <RevealOnScroll>
           <div className="text-center mb-16">
-            <span className="badge mb-4 inline-block">Contact</span>
+            <span className="badge mb-4 inline-block">Let&apos;s Talk</span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              Let&apos;s Build Something{' '}
-              <span className="gradient-text">Amazing</span>
+              Looking for an{' '}
+              <span className="gradient-text">AI Engineer</span>?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Whether you&apos;re looking to build an AI application, share an idea related to data,
-              or just want to connect — I&apos;d love to hear from you!
+              I&apos;m actively exploring senior AI/ML roles where I can drive impact at scale.
+              If you&apos;re building something ambitious with LLMs, MLOps, or data platforms — let&apos;s connect.
             </p>
           </div>
         </RevealOnScroll>
@@ -67,11 +67,11 @@ export function Contact() {
               <MessageSquare className="w-10 h-10 text-primary" />
             </div>
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              Ready to Collaborate?
+              Let&apos;s Ship Something Together
             </h3>
             <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-              I&apos;m always open to discussing new projects, creative ideas, or opportunities to
-              be part of your vision. Let&apos;s grow, learn, and create together!
+              Whether it&apos;s a full-time role, consulting engagement, or just a conversation
+              about AI — I respond to every message. Let&apos;s see what we can build.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <motion.a

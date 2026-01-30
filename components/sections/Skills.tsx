@@ -147,12 +147,13 @@ export function Skills() {
       <div className="container-custom mx-auto relative z-10">
         <RevealOnScroll>
           <div className="text-center mb-16">
-            <span className="badge-secondary mb-4 inline-block">Skills</span>
+            <span className="badge-secondary mb-4 inline-block">Technical Stack</span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              My Technical <span className="gradient-text">Toolkit</span>
+              Battle-Tested <span className="gradient-text">Stack</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              A comprehensive set of skills honed over 8+ years across AI/ML, data engineering, and cloud platforms
+              Production-proven technologies across the ML lifecycle — from data ingestion
+              to model deployment, monitoring, and beyond.
             </p>
           </div>
         </RevealOnScroll>

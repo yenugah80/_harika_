@@ -7,21 +7,21 @@ import { RevealOnScroll } from '@/components/animations/RevealOnScroll'
 const values = [
   {
     icon: Brain,
-    title: 'AI Systems Architect',
+    title: 'End-to-End AI Delivery',
     description:
-      'Designing end-to-end AI platforms that balance model capability, latency, cost efficiency, and operational stability.',
+      'From POC to production — I own the full ML lifecycle: data pipelines, model development, deployment, monitoring, and continuous improvement at scale.',
   },
   {
     icon: Users,
-    title: 'Bridge Builder',
+    title: 'Cross-Functional Leadership',
     description:
-      'Translating ambiguous business needs into scalable AI architectures, working at the intersection of engineering, product, and platform teams.',
+      'Partnering with product, engineering, and stakeholders to align AI initiatives with business KPIs. Proven track record of driving adoption across enterprise teams.',
   },
   {
     icon: Rocket,
-    title: 'Production-First Mindset',
+    title: 'Ship Fast, Scale Smart',
     description:
-      'Building AI systems that teams can trust — with emphasis on operational reliability, explainability, and responsible AI adoption.',
+      'Building production-grade systems with MLOps best practices — CI/CD pipelines, A/B testing, model governance, and observability built-in from day one.',
   },
 ]
 
@@ -36,14 +36,15 @@ export function About() {
           <div className="text-center mb-16">
             <span className="badge mb-4 inline-block">About Me</span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              Transforming <span className="gradient-text">Data</span> into{' '}
-              <span className="gradient-text">Intelligence</span>
+              I <span className="gradient-text">Ship AI</span> That{' '}
+              <span className="gradient-text">Moves Business</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              After years in the IT world, from Apple to Bank of America and Macy&apos;s Inc,
-              every project brought its own challenges and the opportunity to grow.
-              What I value most is how consulting teaches you to stay agile,
-              solution-oriented, and client-focused no matter how complex the problem.
+              8+ years of hands-on experience building and deploying ML systems that drive measurable impact.
+              From fraud detection at <span className="text-secondary font-medium">Bank of America</span> to
+              retail analytics at <span className="text-accent font-medium">Apple</span> to GenAI platforms at{' '}
+              <span className="text-primary font-medium">Macy&apos;s</span> — I thrive at the intersection of
+              cutting-edge AI research and production engineering.
             </p>
           </div>
         </RevealOnScroll>

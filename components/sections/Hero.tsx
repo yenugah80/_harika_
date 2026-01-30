@@ -5,17 +5,17 @@ import { ArrowDown, MapPin, Sparkles } from 'lucide-react'
 import { TextRotator } from '@/components/animations/TextRotator'
 
 const roles = [
-  'LLM-Powered Applications',
-  'RAG Pipelines',
-  'Multi-Agent Systems',
-  'ML Platforms',
-  'Intelligent Automation',
+  'AI that understands context',
+  'Systems that scale gracefully',
+  'Models that explain themselves',
+  'Pipelines that never sleep',
+  'Intelligence that empowers teams',
 ]
 
 const stats = [
-  { value: '8+', label: 'Years Experience' },
-  { value: '3+', label: 'Industries' },
-  { value: '50+', label: 'AI Projects' },
+  { value: '8+', label: 'Years in the Trenches' },
+  { value: '3', label: 'Fortune 500s Transformed' },
+  { value: '50+', label: 'AI Systems Shipped' },
 ]
 
 export function Hero() {
@@ -56,8 +56,9 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
           >
-            Hi, I&apos;m{' '}
-            <span className="gradient-text">Harika Y</span>
+            I&apos;m{' '}
+            <span className="gradient-text">Harika</span>
+            <span className="text-muted-foreground">,</span>
           </motion.h1>
 
           {/* Role */}
@@ -67,8 +68,8 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-4"
           >
-            <span className="text-foreground font-semibold">Senior AI Engineer</span>
-            {' '}building
+            I architect <span className="text-foreground font-semibold">AI systems</span>
+            {' '}that ship
           </motion.div>
 
           <motion.div
@@ -87,9 +88,10 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8"
           >
-            Lead AI Engineer at <span className="text-primary font-medium">Macy&apos;s</span>,
-            crafting production-grade GenAI & ML systems.
-            Passionate about making AI more human, ethical, and impactful.
+            From <span className="text-secondary font-medium">Apple</span> to{' '}
+            <span className="text-accent font-medium">Bank of America</span> to{' '}
+            <span className="text-primary font-medium">Macy&apos;s</span> — I turn ambitious AI visions
+            into production reality. Currently leading GenAI transformation at enterprise scale.
           </motion.p>
 
           {/* Location */}

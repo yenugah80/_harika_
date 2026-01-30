@@ -15,21 +15,21 @@ import { RevealOnScroll } from '@/components/animations/RevealOnScroll'
 
 const featuredProject = {
   title: 'MyFoodTracker',
-  tagline: 'Personal Health Intelligence, Not Just a Tracker',
+  tagline: 'Full-Stack AI Health App — From Idea to Production',
   description:
-    'A comprehensive web application for all your nutritional needs. Built with TypeScript and modern web technologies, featuring AI-powered food logging, personalized nutrition recommendations, and health analytics.',
+    'End-to-end health intelligence platform built from scratch. Features real-time AI food recognition, personalized ML-driven recommendations, and interactive analytics. Demonstrates full-stack ownership: frontend, backend, ML pipeline, and deployment.',
   icon: Utensils,
   highlights: [
-    'AI-powered food recognition and logging',
-    'Personalized nutrition recommendations',
-    'Comprehensive health analytics dashboard',
-    'Modern TypeScript/React architecture',
+    'Computer vision model for instant food recognition',
+    'Personalized recommendation engine with collaborative filtering',
+    'Real-time analytics dashboard with D3.js visualizations',
+    'Production-ready with CI/CD, Docker, and cloud deployment',
   ],
   technologies: [
     'TypeScript',
     'React',
     'Node.js',
-    'AI/ML',
+    'TensorFlow',
     'REST APIs',
   ],
   links: {
@@ -41,38 +41,38 @@ const featuredProject = {
 
 const projects = [
   {
-    title: 'Predictive Hiring ML Research',
+    title: 'Bias-Aware Hiring ML (IBAC 2025)',
     description:
-      'Research paper for IBAC 2025: Enhanced ML models for bias mitigation and efficiency in recruitment using CatBoost, XGBoost, and ensemble methods achieving 97% accuracy.',
+      'Published research: Built ensemble models achieving 97% accuracy while reducing demographic bias by 40%. Implemented SHAP explainability for transparent hiring decisions. Accepted at IBAC 2025 conference.',
     icon: TrendingUp,
-    technologies: ['Python', 'Jupyter', 'CatBoost', 'XGBoost', 'SHAP'],
+    technologies: ['Python', 'CatBoost', 'XGBoost', 'SHAP', 'Fairlearn'],
     link: 'https://github.com/yenugah80/Revolutionizing-Recruitment-Enhanced-Machine-Learning-Models-for-Bias-Mitigation-and-Efficiency',
     color: 'secondary',
   },
   {
     title: 'Mermaid Maker',
     description:
-      'Create beautiful diagrams with AI: natural-language to Mermaid code with real-time preview and SVG export. Simplifying diagram creation through conversational AI.',
+      'LLM-powered diagram generator: Natural language to production-ready Mermaid code in seconds. Features real-time preview, version history, and one-click SVG/PNG export. 500+ diagrams generated.',
     icon: Sparkles,
-    technologies: ['TypeScript', 'AI', 'Mermaid.js', 'React'],
+    technologies: ['TypeScript', 'GPT-4', 'Mermaid.js', 'React'],
     link: 'https://github.com/yenugah80/Mermaid-Maker',
     color: 'accent',
   },
   {
-    title: 'Multi-Agent AI Workflows',
+    title: 'Enterprise Multi-Agent System',
     description:
-      'LangGraph-based agent systems for task planning, tool invocation, SQL execution, and reasoning across enterprise systems at Macy\'s.',
+      'Production LangGraph orchestration: Autonomous agents for task decomposition, tool selection, SQL generation, and self-correction. Deployed at Macy\'s for internal operations.',
     icon: Bot,
-    technologies: ['LangGraph', 'LangChain', 'FastAPI', 'Python'],
+    technologies: ['LangGraph', 'LangChain', 'FastAPI', 'Bedrock'],
     link: 'https://github.com/yenugah80',
     color: 'primary',
   },
   {
-    title: 'Analytics Dashboard',
+    title: 'Executive Analytics Suite',
     description:
-      'Interactive dashboards and worksheets for data visualization, business intelligence insights, and performance tracking.',
+      'C-suite dashboards tracking $B+ KPIs: Built interactive Tableau/Power BI solutions with real-time data pipelines. Reduced reporting time from days to minutes.',
     icon: BarChart3,
-    technologies: ['Tableau', 'Power BI', 'Data Viz', 'SQL'],
+    technologies: ['Tableau', 'Power BI', 'SQL', 'Python'],
     link: 'https://github.com/yenugah80/AnalyticsDashboardData',
     color: 'secondary',
   },
@@ -84,12 +84,13 @@ export function Projects() {
       <div className="container-custom mx-auto">
         <RevealOnScroll>
           <div className="text-center mb-16">
-            <span className="badge-accent mb-4 inline-block">Projects</span>
+            <span className="badge-accent mb-4 inline-block">Shipped Projects</span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              Featured <span className="gradient-text">Work</span>
+              Code That <span className="gradient-text">Ships</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              A selection of projects showcasing my expertise in AI/ML systems
+              Real systems, real impact. From research publications to production deployments —
+              here&apos;s what I build when I&apos;m not at work.
             </p>
           </div>
         </RevealOnScroll>
