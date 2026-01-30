@@ -17,5 +17,5 @@ export async function GET(request: Request) {
   }
 }
 
-// Enable edge runtime for better performance
-export const runtime = 'edge'
+// ISR: Revalidate every 6 hours for fresh Medium articles
+export const revalidate = 21600

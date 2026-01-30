@@ -1,12 +1,17 @@
+import dynamic from 'next/dynamic'
 import { Hero } from '@/components/sections/Hero'
-import { About } from '@/components/sections/About'
-import { Experience } from '@/components/sections/Experience'
-import { Skills } from '@/components/sections/Skills'
-import { Projects } from '@/components/sections/Projects'
-import { Blog } from '@/components/sections/Blog'
-import { Contact } from '@/components/sections/Contact'
-import { Starfield } from '@/components/animations/Starfield'
-import { GlowingLines } from '@/components/animations/GlowingLines'
+
+// Lazy load background animations to not block initial paint
+const Starfield = dynamic(() => import('@/components/animations/Starfield').then(mod => ({ default: mod.Starfield })), { ssr: false })
+const GlowingLines = dynamic(() => import('@/components/animations/GlowingLines').then(mod => ({ default: mod.GlowingLines })), { ssr: false })
+
+// Dynamic imports for below-fold sections to reduce initial bundle
+const About = dynamic(() => import('@/components/sections/About').then(mod => ({ default: mod.About })))
+const Experience = dynamic(() => import('@/components/sections/Experience').then(mod => ({ default: mod.Experience })))
+const Skills = dynamic(() => import('@/components/sections/Skills').then(mod => ({ default: mod.Skills })))
+const Projects = dynamic(() => import('@/components/sections/Projects').then(mod => ({ default: mod.Projects })))
+const Blog = dynamic(() => import('@/components/sections/Blog').then(mod => ({ default: mod.Blog })))
+const Contact = dynamic(() => import('@/components/sections/Contact').then(mod => ({ default: mod.Contact })))
 
 export default function Home() {
   return (
@@ -15,27 +20,21 @@ export default function Home() {
       <Starfield />
       <GlowingLines />
 
-      {/* Gradient orbs */}
+      {/* Gradient orbs - reduced blur for better performance */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
 
         {/* Floating orb 1 - top left */}
-        <div className="absolute top-[10%] left-[15%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px] animate-float-slow" />
+        <div className="absolute top-[10%] left-[15%] w-[400px] h-[400px] bg-primary/10 rounded-full blur-3xl" />
 
         {/* Floating orb 2 - bottom right */}
-        <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[120px] animate-float-slow animation-delay-3000" />
+        <div className="absolute bottom-[20%] right-[10%] w-[350px] h-[350px] bg-secondary/10 rounded-full blur-3xl" />
 
         {/* Floating orb 3 - center */}
-        <div className="absolute top-[40%] left-[50%] -translate-x-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[180px] animate-pulse-subtle animation-delay-5000" />
-
-        {/* Floating orb 4 - top right */}
-        <div className="absolute top-[5%] right-[20%] w-[300px] h-[300px] bg-secondary/8 rounded-full blur-[100px] animate-float-slow animation-delay-7000" />
-
-        {/* Floating orb 5 - bottom left */}
-        <div className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] bg-primary/8 rounded-full blur-[130px] animate-float-slow animation-delay-2000" />
+        <div className="absolute top-[40%] left-[50%] -translate-x-1/2 w-[450px] h-[450px] bg-accent/5 rounded-full blur-3xl" />
 
         {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-grid opacity-30" />
+        <div className="absolute inset-0 bg-grid opacity-20" />
       </div>
 
       {/* Main Content */}

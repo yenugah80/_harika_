@@ -48,6 +48,12 @@ const config: Config = {
         'spin-slow': 'spin 30s linear infinite',
         'bounce-subtle': 'bounceSubtle 2s ease-in-out infinite',
         'gradient': 'gradientShift 4s ease infinite',
+        'line-slide-h1': 'slideRight 12s linear infinite',
+        'line-slide-h2': 'slideRight 15s linear infinite 2s',
+        'line-slide-h3': 'slideRight 18s linear infinite 4s',
+        'line-slide-v1': 'slideDown 20s linear infinite 1s',
+        'line-slide-v2': 'slideDown 25s linear infinite 3s',
+        'line-slide-v3': 'slideDown 22s linear infinite 5s',
       },
       keyframes: {
         fadeIn: {
@@ -86,6 +92,14 @@ const config: Config = {
           '0%': { backgroundPosition: '0% 0%' },
           '50%': { backgroundPosition: '100% 100%' },
           '100%': { backgroundPosition: '0% 0%' },
+        },
+        slideRight: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100vw)' },
+        },
+        slideDown: {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(100vh)' },
         },
       },
       backgroundImage: {

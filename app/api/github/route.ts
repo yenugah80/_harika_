@@ -17,5 +17,5 @@ export async function GET(request: Request) {
   }
 }
 
-// Enable edge runtime for better performance
-export const runtime = 'edge'
+// ISR: Revalidate every hour for fresh GitHub data
+export const revalidate = 3600
