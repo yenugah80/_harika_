@@ -1,8 +1,79 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Calendar, MapPin, Award, Zap, TrendingUp } from 'lucide-react'
+import { Calendar, MapPin, Zap, TrendingUp, Clock, Building2, Bot, Award } from 'lucide-react'
 import { RevealOnScroll } from '@/components/animations/RevealOnScroll'
+
+// Company Logo Components
+const MacysLogo = () => (
+  <svg viewBox="0 0 48 48" className="w-12 h-12 md:w-14 md:h-14">
+    <defs>
+      <linearGradient id="macys-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#e21836" />
+        <stop offset="100%" stopColor="#cc1430" />
+      </linearGradient>
+    </defs>
+    <path
+      d="M24 4l5.5 11.5L42 17l-9 8.5 2 12.5-11-6-11 6 2-12.5-9-8.5 12.5-1.5z"
+      fill="url(#macys-gradient)"
+    />
+  </svg>
+)
+
+const BankOfAmericaLogo = () => (
+  <svg viewBox="0 0 48 48" className="w-12 h-12 md:w-14 md:h-14">
+    <defs>
+      <linearGradient id="boa-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#012169" />
+        <stop offset="100%" stopColor="#0033a0" />
+      </linearGradient>
+    </defs>
+    <rect x="6" y="8" width="36" height="32" rx="4" fill="url(#boa-gradient)" />
+    <path d="M12 20h8v4h-8zM12 28h8v4h-8zM24 20h12v4h-12zM24 28h12v4h-12z" fill="#e31837" opacity="0.9" />
+    <path d="M12 14h24v2h-24z" fill="#ffffff" opacity="0.8" />
+  </svg>
+)
+
+const AppleLogo = () => (
+  <svg viewBox="0 0 48 48" className="w-12 h-12 md:w-14 md:h-14">
+    <defs>
+      <linearGradient id="apple-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#a855f7" />
+        <stop offset="100%" stopColor="#7c3aed" />
+      </linearGradient>
+    </defs>
+    <path
+      d="M32.5 8c-2.1 0-4.3 1.4-5.7 3.2-1.2 1.6-2.2 4-1.9 6.4 2.3.2 4.6-1.2 6-3.1 1.3-1.7 2.1-4.1 1.6-6.5zm5.5 14.5c-.1 0-4.4-1.8-4.5 5.2 0 8.3 7.3 11.1 7.4 11.2-.1.2-1.2 4-3.9 7.9-2.4 3.4-4.9 6.8-8.8 6.9-1.9 0-3.2-.6-4.6-.6-1.4 0-2.9.6-4.6.6-3.8-.1-6.7-3.6-9.1-7-4.9-7-8.6-19.7-3.6-28.3 2.5-4.2 6.9-6.9 11.7-7 1.9 0 3.8.7 5.4.7 1.5 0 3.9-.8 6.2-.7 1.1 0 4 .4 5.9 3.1-.1.1-3.5 2.1-3.5 6z"
+      fill="url(#apple-gradient)"
+      transform="scale(0.85) translate(4, 2)"
+    />
+  </svg>
+)
+
+const RSILogo = () => (
+  <svg viewBox="0 0 48 48" className="w-12 h-12 md:w-14 md:h-14">
+    <defs>
+      <linearGradient id="rsi-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#6366f1" />
+        <stop offset="100%" stopColor="#4f46e5" />
+      </linearGradient>
+    </defs>
+    <circle cx="24" cy="24" r="20" fill="url(#rsi-gradient)" />
+    <path
+      d="M16 18h5v12h-5zM23 18h5v12h-5zM30 18h2l-4 12h-2z"
+      fill="#ffffff"
+      opacity="0.9"
+    />
+    <circle cx="24" cy="24" r="6" fill="none" stroke="#22d3ee" strokeWidth="2" strokeDasharray="4 2" />
+  </svg>
+)
+
+const companyLogos: Record<string, React.FC> = {
+  "Macy's Inc.": MacysLogo,
+  'Bank of America': BankOfAmericaLogo,
+  'Apple Inc.': AppleLogo,
+  'RSI Softech': RSILogo,
+}
 
 const experiences = [
   {
@@ -21,7 +92,6 @@ const experiences = [
     technologies: ['LangChain', 'LangGraph', 'Amazon Bedrock', 'FAISS', 'Spark', 'Databricks', 'FastAPI'],
     color: 'primary',
     current: true,
-    logo: '🏢',
   },
   {
     company: 'Bank of America',
@@ -39,7 +109,6 @@ const experiences = [
     technologies: ['Python', 'XGBoost', 'PySpark', 'Azure OpenAI', 'Snowflake', 'BigQuery', 'Docker'],
     color: 'secondary',
     current: false,
-    logo: '🏦',
   },
   {
     company: 'Apple Inc.',
@@ -52,12 +121,11 @@ const experiences = [
       { text: 'Owned KPI logic & analytics pipelines across business units', metric: 'Data Ownership' },
       { text: 'Transitioned analytics to production ML systems', metric: 'ML Transformation' },
       { text: 'Led & mentored 19-member engineering team as SME', metric: 'Team Leadership' },
-      { text: 'Earned 2x Spot Awards for exemplary performance', metric: '🏆 Recognition' },
+      { text: 'Earned 2x Spot Awards for exemplary performance', metric: 'Recognition' },
     ],
     technologies: ['Python', 'SQL', 'Azure ML', 'SageMaker', 'FastAPI', 'Docker', 'Kubernetes'],
     color: 'accent',
     current: false,
-    logo: '🍎',
   },
   {
     company: 'RSI Softech',
@@ -69,12 +137,11 @@ const experiences = [
     highlights: [
       { text: 'Built geodatabases for AMRUT Smart Cities project', metric: 'Smart Cities' },
       { text: 'Automated spatial ETL with Python & GIS scripts', metric: 'Automation' },
-      { text: 'Improved dataset reliability by 30-40%', metric: '📈 30-40% Better' },
+      { text: 'Improved dataset reliability by 30-40%', metric: '30-40% Better' },
     ],
     technologies: ['ArcGIS', 'QGIS', 'Python', 'MySQL', 'SQL Server'],
     color: 'primary',
     current: false,
-    logo: '🗺️',
   },
 ]
 
@@ -131,13 +198,13 @@ export function Experience() {
                   {/* Header */}
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
                     <div className="flex items-start gap-4">
-                      {/* Company Logo/Emoji */}
+                      {/* Company Logo */}
                       <motion.div
-                        className="text-4xl md:text-5xl"
-                        animate={{ rotate: [0, 5, -5, 0] }}
-                        transition={{ duration: 4, repeat: Infinity, repeatType: 'reverse' }}
+                        className="flex-shrink-0"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
                       >
-                        {exp.logo}
+                        {companyLogos[exp.company] && companyLogos[exp.company]({})}
                       </motion.div>
                       <div>
                         <div className="flex items-center gap-3 mb-1">
@@ -217,17 +284,17 @@ export function Experience() {
         <RevealOnScroll>
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { value: '8+', label: 'Years Experience', icon: '⚡' },
-              { value: '3', label: 'Industries', icon: '🏢' },
-              { value: '50+', label: 'AI Projects', icon: '🤖' },
-              { value: '2', label: 'Awards', icon: '🏆' },
+              { value: '8+', label: 'Years Experience', Icon: Clock },
+              { value: '3', label: 'Industries', Icon: Building2 },
+              { value: '50+', label: 'AI Projects', Icon: Bot },
+              { value: '2', label: 'Awards', Icon: Award },
             ].map((stat, i) => (
               <motion.div
                 key={i}
                 className="glass rounded-xl p-4 text-center group hover:border-primary/30 transition-colors"
                 whileHover={{ y: -5, scale: 1.02 }}
               >
-                <span className="text-2xl mb-2 block group-hover:animate-bounce">{stat.icon}</span>
+                <stat.Icon className="w-6 h-6 mx-auto mb-2 text-primary group-hover:text-secondary transition-colors" />
                 <div className="text-2xl md:text-3xl font-bold gradient-text">{stat.value}</div>
                 <div className="text-xs text-muted-foreground">{stat.label}</div>
               </motion.div>
