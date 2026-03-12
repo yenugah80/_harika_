@@ -11,9 +11,9 @@ const experiences = [
     role: 'Lead AI Engineer',
     period: '2025 - Present',
     location: 'United States',
-    gradient: 'linear-gradient(135deg, hsl(20 100% 70%), hsl(340 85% 70%))',
-    glowColor: 'hsl(20 100% 60% / 0.15)',
-    shadowColor: 'hsl(20 100% 50% / 0.2)',
+    gradient: 'linear-gradient(135deg, hsl(12 90% 68%), hsl(340 75% 72%))',
+    shadowColor: 'hsl(12 90% 68% / 0.2)',
+    bgLight: 'hsl(12 100% 96%)',
     story: "Building the GenAI platform from scratch, architecting systems that help 500+ stores work smarter.",
     highlights: [
       { metric: 'Sub-2s', label: 'RAG Latency' },
@@ -29,9 +29,9 @@ const experiences = [
     role: 'Senior AI Engineer',
     period: '2022 - 2024',
     location: 'United States',
-    gradient: 'linear-gradient(135deg, hsl(235 55% 63%), hsl(280 85% 75%))',
-    glowColor: 'hsl(235 55% 63% / 0.15)',
-    shadowColor: 'hsl(235 55% 50% / 0.2)',
+    gradient: 'linear-gradient(135deg, hsl(220 80% 70%), hsl(270 70% 72%))',
+    shadowColor: 'hsl(220 80% 70% / 0.2)',
+    bgLight: 'hsl(220 90% 96%)',
     story: "Financial services taught me what high-stakes AI really means. Protecting billions in transactions daily.",
     highlights: [
       { metric: '35%', label: 'Less False Positives' },
@@ -47,9 +47,9 @@ const experiences = [
     role: 'AI Engineer',
     period: '2019 - 2022',
     location: 'United States',
-    gradient: 'linear-gradient(135deg, hsl(280 85% 75%), hsl(185 85% 55%))',
-    glowColor: 'hsl(280 85% 65% / 0.15)',
-    shadowColor: 'hsl(280 85% 55% / 0.2)',
+    gradient: 'linear-gradient(135deg, hsl(270 70% 72%), hsl(175 55% 55%))',
+    shadowColor: 'hsl(270 70% 72% / 0.2)',
+    bgLight: 'hsl(270 80% 96%)',
     story: "Apple raised my bar for everything. My forecasts directly impacted inventory decisions globally.",
     highlights: [
       { metric: '50M+', label: 'Daily Transactions' },
@@ -65,9 +65,9 @@ const experiences = [
     role: 'Data Engineer',
     period: '2017 - 2019',
     location: 'India',
-    gradient: 'linear-gradient(135deg, hsl(185 85% 55%), hsl(155 75% 50%))',
-    glowColor: 'hsl(185 85% 50% / 0.15)',
-    shadowColor: 'hsl(185 85% 45% / 0.2)',
+    gradient: 'linear-gradient(135deg, hsl(175 55% 55%), hsl(155 55% 48%))',
+    shadowColor: 'hsl(175 55% 55% / 0.2)',
+    bgLight: 'hsl(175 70% 96%)',
     story: "Where it all started. Processing satellite imagery for Smart Cities ignited my passion for data.",
     highlights: [
       { metric: 'TB-scale', label: 'Geodatabase' },
@@ -82,25 +82,25 @@ const experiences = [
 export function Experience() {
   return (
     <section id="experience" className="section relative overflow-hidden">
-      {/* Background decorative elements */}
+      {/* Soft pastel floating shapes */}
       <div
         className="float-shape"
         style={{
-          width: '400px',
-          height: '400px',
-          background: 'hsl(var(--primary-glow) / 0.1)',
-          top: '10%',
-          right: '-10%',
+          width: '500px',
+          height: '500px',
+          background: 'hsl(var(--rose-light))',
+          top: '5%',
+          right: '-15%',
         }}
       />
       <div
         className="float-shape"
         style={{
-          width: '300px',
-          height: '300px',
-          background: 'hsl(var(--secondary-glow) / 0.08)',
-          bottom: '20%',
-          left: '-5%',
+          width: '400px',
+          height: '400px',
+          background: 'hsl(var(--accent-light))',
+          bottom: '10%',
+          left: '-10%',
         }}
       />
 
@@ -125,17 +125,16 @@ export function Experience() {
           {/* Vertical gradient line */}
           <div className="timeline-line hidden md:block" />
 
-          <div className="space-y-8 md:space-y-10 md:pl-16">
+          <div className="space-y-8 md:space-y-10 md:pl-20">
             {experiences.map((exp, index) => (
               <RevealOnScroll key={index} delay={index * 0.1}>
                 <motion.div
                   className="exp-card relative"
                   style={{
                     '--card-gradient': exp.gradient,
-                    '--card-glow': `radial-gradient(ellipse at top left, ${exp.glowColor}, transparent 50%)`,
                     '--card-shadow': exp.shadowColor,
                   } as React.CSSProperties}
-                  whileHover={{ x: 8 }}
+                  whileHover={{ y: -6, x: 4 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                 >
                   {/* Timeline dot */}
@@ -147,14 +146,14 @@ export function Experience() {
                     }}
                   />
 
-                  <div className="p-6 md:p-8 relative z-10">
+                  <div className="p-6 md:p-8">
                     {/* Header row */}
                     <div className="flex flex-col md:flex-row md:items-start gap-5 mb-6">
                       {/* Company logo */}
                       <motion.div
                         className="company-logo shrink-0"
                         style={{ background: exp.gradient }}
-                        whileHover={{ rotate: 5, scale: 1.08 }}
+                        whileHover={{ rotate: 3, scale: 1.08 }}
                       >
                         {exp.logo || ''}
                       </motion.div>
@@ -167,7 +166,7 @@ export function Experience() {
                             <span
                               className="px-3 py-1 text-xs font-semibold rounded-full flex items-center gap-1.5"
                               style={{
-                                background: 'hsl(var(--success) / 0.15)',
+                                background: 'hsl(var(--success-light))',
                                 color: 'hsl(var(--success))',
                                 border: '1px solid hsl(var(--success) / 0.3)',
                               }}
@@ -178,7 +177,7 @@ export function Experience() {
                           )}
                         </div>
                         <p
-                          className="text-lg font-medium mb-3"
+                          className="text-lg font-semibold mb-3"
                           style={{ background: exp.gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
                         >
                           {exp.role}
@@ -197,7 +196,7 @@ export function Experience() {
                     </div>
 
                     {/* Story */}
-                    <p className="text-base leading-relaxed mb-6" style={{ color: 'hsl(var(--foreground) / 0.8)' }}>
+                    <p className="text-base leading-relaxed mb-6" style={{ color: 'hsl(var(--foreground-muted))' }}>
                       {exp.story}
                     </p>
 
@@ -208,12 +207,12 @@ export function Experience() {
                           key={i}
                           className="text-center p-4 rounded-xl"
                           style={{
-                            background: 'hsl(var(--muted) / 0.5)',
+                            background: exp.bgLight,
                             border: '1px solid hsl(var(--border-muted))',
                           }}
                           whileHover={{
                             scale: 1.03,
-                            background: 'hsl(var(--muted) / 0.8)',
+                            y: -2,
                           }}
                         >
                           <div className="flex items-center justify-center gap-1 mb-1">
@@ -225,7 +224,7 @@ export function Experience() {
                               {highlight.metric}
                             </span>
                           </div>
-                          <span className="text-xs" style={{ color: 'hsl(var(--muted-foreground))' }}>
+                          <span className="text-xs font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>
                             {highlight.label}
                           </span>
                         </motion.div>
@@ -238,7 +237,7 @@ export function Experience() {
                         <motion.span
                           key={i}
                           className="tag"
-                          whileHover={{ scale: 1.05 }}
+                          whileHover={{ scale: 1.05, y: -2 }}
                         >
                           {tech}
                         </motion.span>
