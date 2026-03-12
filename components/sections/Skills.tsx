@@ -140,16 +140,13 @@ const skillCategories = [
 
 export function Skills() {
   return (
-    <section id="skills" className="section relative overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/5 to-transparent" />
-
-      <div className="container-custom mx-auto relative z-10">
+    <section id="skills" className="section">
+      <div className="container-custom mx-auto">
         <RevealOnScroll>
-          <div className="text-center mb-16">
-            <span className="badge-secondary mb-4 inline-block">Tools of the Trade</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              Technologies I <span className="gradient-text">Think In</span>
+          <div className="text-center mb-12">
+            <span className="badge mb-4 inline-block">Skills</span>
+            <h2 className="text-2xl md:text-3xl font-medium mb-4">
+              Technologies I Work With
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Every tool here has a story. Some I learned through late-night debugging.

@@ -1,112 +1,111 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#blog', label: 'Blog' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/', label: 'Home' },
+  { href: '/blog', label: 'Writing' },
+  { href: '/#projects', label: 'Work' },
+  { href: '/#contact', label: 'Contact' },
 ]
 
 export function Navigation() {
+  const pathname = usePathname()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
-
-      // Update active section based on scroll position
-      const sections = navLinks.map((link) => link.href.replace('#', ''))
-      for (const section of sections.reverse()) {
-        const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          if (rect.top <= 150) {
-            setActiveSection(section)
-            break
-          }
-        }
-      }
     }
-
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/'
+    if (href.startsWith('/#')) return pathname === '/'
+    return pathname.startsWith(href)
+  }
+
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false)
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+    if (href.startsWith('/#') && pathname !== '/') {
+      window.location.href = href
     }
   }
 
   return (
     <>
       <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
           isScrolled
-            ? 'bg-background/80 backdrop-blur-md border-b border-border/50'
+            ? 'bg-background/80 backdrop-blur-xl border-b border-border/50'
             : 'bg-transparent'
         )}
       >
-        <nav className="container-custom mx-auto px-4 md:px-8">
+        <nav className="px-6 md:px-12 lg:px-24">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <motion.a
-              href="#"
-              className="text-xl md:text-2xl font-bold gradient-text"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Harika Y
-            </motion.a>
+            <Link href="/" className="text-lg font-medium tracking-tight hover:opacity-70 transition-opacity">
+              Harika Y.
+            </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-1">
+            <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
-                <button
+                <Link
                   key={link.href}
+                  href={link.href}
                   onClick={() => handleNavClick(link.href)}
                   className={cn(
-                    'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300',
-                    activeSection === link.href.replace('#', '')
-                      ? 'text-primary bg-primary/10'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                    'text-sm transition-colors relative py-1',
+                    isActive(link.href)
+                      ? 'text-foreground'
+                      : 'text-muted-foreground hover:text-foreground'
                   )}
                 >
                   {link.label}
-                </button>
+                  {isActive(link.href) && !link.href.startsWith('/#') && (
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute -bottom-0.5 left-0 right-0 h-px bg-foreground"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </Link>
               ))}
+            </div>
+
+            {/* Resume button */}
+            <div className="hidden md:block">
               <a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-4 btn-primary text-sm"
+                className="text-sm px-4 py-2 border border-border rounded-full hover:bg-muted/50 transition-colors"
               >
                 Resume
               </a>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile menu button */}
             <button
+              type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-muted/50 transition-colors"
+              className="md:hidden p-2 -mr-2 hover:opacity-70 transition-opacity"
               aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </nav>
@@ -116,46 +115,59 @@ export function Navigation() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-40 md:hidden"
           >
-            <div
-              className="absolute inset-0 bg-background/95 backdrop-blur-md"
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-background"
               onClick={() => setIsMobileMenuOpen(false)}
             />
-            <nav className="relative flex flex-col items-center justify-center h-full gap-6">
+            <motion.nav
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -20, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
+              className="relative flex flex-col items-center justify-center h-full gap-8"
+            >
               {navLinks.map((link, index) => (
-                <motion.button
+                <motion.div
                   key={link.href}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  onClick={() => handleNavClick(link.href)}
-                  className={cn(
-                    'text-2xl font-medium transition-colors',
-                    activeSection === link.href.replace('#', '')
-                      ? 'gradient-text'
-                      : 'text-muted-foreground hover:text-foreground'
-                  )}
+                  transition={{ delay: index * 0.05 + 0.1 }}
                 >
-                  {link.label}
-                </motion.button>
+                  <Link
+                    href={link.href}
+                    onClick={() => handleNavClick(link.href)}
+                    className={cn(
+                      'text-2xl font-medium transition-colors',
+                      isActive(link.href)
+                        ? 'text-foreground'
+                        : 'text-muted-foreground'
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
               <motion.a
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navLinks.length * 0.1 }}
+                transition={{ delay: 0.3 }}
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary mt-4"
+                className="mt-4 text-sm px-6 py-3 border border-border rounded-full hover:bg-muted/50 transition-colors"
               >
                 Resume
               </motion.a>
-            </nav>
+            </motion.nav>
           </motion.div>
         )}
       </AnimatePresence>

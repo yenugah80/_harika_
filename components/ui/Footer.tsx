@@ -1,74 +1,90 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, BookOpen, Heart } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
 
-const socialLinks = [
-  {
-    icon: Linkedin,
-    href: 'https://linkedin.com/in/harika-ye',
-    label: 'LinkedIn',
-  },
-  {
-    icon: Github,
-    href: 'https://github.com/yenugah80',
-    label: 'GitHub',
-  },
-  {
-    icon: BookOpen,
-    href: 'https://harikayenuga.medium.com',
-    label: 'Medium',
-  },
-  {
-    icon: Mail,
-    href: 'mailto:yenugaharika555@gmail.com',
-    label: 'Email',
-  },
+const links = [
+  { label: 'Home', href: '/' },
+  { label: 'Writing', href: '/blog' },
+  { label: 'Work', href: '/#projects' },
+  { label: 'Contact', href: '/#contact' },
+]
+
+const socials = [
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/harika-ye' },
+  { label: 'GitHub', href: 'https://github.com/yenugah80' },
+  { label: 'Medium', href: 'https://harikayenuga.medium.com' },
+  { label: 'RSS', href: '/rss.xml' },
 ]
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-border/50 bg-card/30">
-      <div className="container-custom mx-auto px-4 md:px-8 py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo & Tagline */}
-          <div className="text-center md:text-left">
-            <h3 className="text-xl font-bold gradient-text mb-2">Harika Y</h3>
-            <p className="text-sm text-muted-foreground">
-              Building intelligent AI systems
+    <footer className="border-t border-border/50">
+      <div className="px-6 md:px-12 lg:px-24 py-16">
+        <div className="max-w-5xl mx-auto">
+          {/* Main footer content */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            {/* Brand */}
+            <div>
+              <Link href="/" className="text-lg font-medium tracking-tight mb-4 block">
+                Harika Y.
+              </Link>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Senior AI/ML Engineer building production systems. Currently at Macy&apos;s.
+              </p>
+            </div>
+
+            {/* Navigation */}
+            <div>
+              <p className="text-sm text-muted-foreground mb-4">Navigation</p>
+              <ul className="space-y-3">
+                {links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm hover:text-muted-foreground transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Connect */}
+            <div>
+              <p className="text-sm text-muted-foreground mb-4">Connect</p>
+              <ul className="space-y-3">
+                {socials.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      target={link.href.startsWith('http') ? '_blank' : undefined}
+                      rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="group inline-flex items-center gap-1 text-sm hover:text-muted-foreground transition-colors"
+                    >
+                      {link.label}
+                      {link.href.startsWith('http') && (
+                        <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      )}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="pt-8 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-muted-foreground">
+              &copy; {currentYear} Harika Yenuga. All rights reserved.
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Built with Next.js
             </p>
           </div>
-
-          {/* Social Links */}
-          <div className="flex items-center gap-4">
-            {socialLinks.map((link) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-lg bg-muted/30 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-300"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label={link.label}
-              >
-                <link.icon size={20} className="text-muted-foreground hover:text-primary" />
-              </motion.a>
-            ))}
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="my-8 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
-        {/* Copyright */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <p className="flex items-center gap-1">
-            Made with <Heart size={14} className="text-red-500 fill-red-500" /> by Harika Y
-          </p>
-          <p>&copy; {currentYear} All rights reserved.</p>
         </div>
       </div>
     </footer>

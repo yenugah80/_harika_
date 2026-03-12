@@ -1,0 +1,114 @@
+---
+title: "Building Production-Grade RAG Systems: Lessons from the Trenches"
+description: "After deploying RAG systems that handle millions of queries, here's what I've learned about making them reliable, fast, and actually useful."
+date: "2024-03-10"
+author: "Harika Yenuga"
+tags: ["RAG", "LLM", "AI Engineering", "Production"]
+image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=600&fit=crop"
+published: true
+---
+
+After spending the past two years building and deploying RAG (Retrieval-Augmented Generation) systems at scale, I've learned that the gap between a demo and production is enormous. Here's what actually matters when you're building systems that need to work reliably.
+
+## The Chunking Problem Nobody Talks About
+
+Everyone starts with fixed-size chunking. It's simple, it works for demos, and it fails spectacularly in production.
+
+```python
+# What most tutorials show
+chunks = text.split_every(512)  # Don't do this
+
+# What actually works
+chunks = semantic_chunker(
+    text,
+    min_size=256,
+    max_size=1024,
+    overlap=64,
+    preserve_sentences=True
+)
+```
+
+The key insight is that **chunk boundaries should respect semantic meaning**. A chunk that ends mid-sentence or splits a code block will produce garbage retrievals.
+
+## Embeddings Are Not Created Equal
+
+I've tested dozens of embedding models. Here's the hierarchy I've found works best for technical content:
+
+1. **OpenAI text-embedding-3-large** - Best for general content
+2. **Cohere embed-v3** - Excellent for multilingual
+3. **Voyage-2** - Surprisingly good for code
+4. **BGE-large-en-v1.5** - Best open-source option
+
+But here's the thing: **your embedding model should match your query patterns**. If users ask questions differently than how your documents are written, you need query transformation.
+
+## The Reranking Secret
+
+Raw vector similarity isn't enough. Adding a reranker improved our precision by 34%.
+
+```python
+# Step 1: Get top-k candidates (be generous)
+candidates = vector_store.similarity_search(query, k=20)
+
+# Step 2: Rerank with a cross-encoder
+reranked = reranker.rerank(query, candidates, top_n=5)
+
+# Step 3: Use only the top reranked results
+context = format_context(reranked)
+```
+
+We use Cohere's reranker in production, but there are solid open-source options like `cross-encoder/ms-marco-MiniLM-L-12-v2`.
+
+## Hybrid Search is Non-Negotiable
+
+Pure semantic search misses exact matches. Pure keyword search misses semantic similarity. You need both.
+
+Our production setup uses:
+- **70% semantic similarity** (dense vectors)
+- **30% BM25** (sparse retrieval)
+
+The ratio matters and should be tuned for your use case.
+
+## Caching Strategies That Actually Work
+
+Not all queries need fresh retrievals. Here's our caching hierarchy:
+
+1. **Query cache** - Same exact query? Same results.
+2. **Semantic cache** - Similar queries? Consider cached results.
+3. **Document cache** - Avoid re-embedding unchanged documents.
+
+The semantic cache alone reduced our latency p50 by 40%.
+
+## Evaluation: The Hard Part
+
+You can't improve what you can't measure. Here's our evaluation framework:
+
+- **Retrieval quality**: NDCG@k, MRR
+- **Answer quality**: Human evaluation + LLM-as-judge
+- **Latency**: p50, p95, p99
+- **Cost**: $ per query
+
+We run evaluations on a curated dataset of 500 query-answer pairs weekly.
+
+## The Architecture That Scaled
+
+After multiple iterations, here's what we landed on:
+
+```
+Query → Query Transform → Hybrid Search → Rerank →
+    Context Assembly → LLM → Response Validation → User
+```
+
+Each step has fallbacks. The system degrades gracefully rather than failing completely.
+
+## What's Next
+
+I'm currently exploring:
+- **Graph RAG** for complex multi-hop reasoning
+- **Speculative retrieval** for latency reduction
+- **Adaptive chunking** based on document structure
+
+If you're building RAG systems and want to chat, reach out on [LinkedIn](https://linkedin.com/in/harika-ye) or [Twitter](https://twitter.com/harikayenuga).
+
+---
+
+*This post is part of my series on production AI systems. Subscribe to get notified when I publish new content.*

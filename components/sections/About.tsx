@@ -27,17 +27,13 @@ const values = [
 
 export function About() {
   return (
-    <section id="about" className="section relative overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-
-      <div className="container-custom mx-auto relative z-10">
+    <section id="about" className="section">
+      <div className="container-custom mx-auto">
         <RevealOnScroll>
-          <div className="text-center mb-16">
-            <span className="badge mb-4 inline-block">About Me</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              The <span className="gradient-text">Story</span> Behind{' '}
-              <span className="gradient-text">The Code</span>
+          <div className="text-center mb-12">
+            <span className="badge mb-4 inline-block">About</span>
+            <h2 className="text-2xl md:text-3xl font-medium mb-4">
+              The Story Behind The Code
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               I spent 8 years learning that the hard part of AI isn&#39;t the model—it&#39;s everything else.
@@ -51,7 +47,7 @@ export function About() {
         </RevealOnScroll>
 
         {/* Value Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-3 gap-4 mb-12">
           {values.map((value, index) => (
             <RevealOnScroll key={index} delay={index * 0.1}>
               <motion.div

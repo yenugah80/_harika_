@@ -44,14 +44,13 @@ const socialLinks = [
 
 export function Contact() {
   return (
-    <section id="contact" className="section relative overflow-hidden">
+    <section id="contact" className="section">
       <div className="container-custom mx-auto">
         <RevealOnScroll>
-          <div className="text-center mb-16">
-            <span className="badge mb-4 inline-block">The Next Chapter</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              Let&apos;s Write the{' '}
-              <span className="gradient-text">Next Story</span>
+          <div className="text-center mb-12">
+            <span className="badge mb-4 inline-block">Contact</span>
+            <h2 className="text-2xl md:text-3xl font-medium mb-4">
+              Let&apos;s Connect
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               I&apos;m looking for my next chapter: a team tackling hard problems with AI, where I can learn,

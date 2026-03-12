@@ -151,29 +151,15 @@ const experiences = [
 
 export function Experience() {
   return (
-    <section id="experience" className="section relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-[100px] animate-pulse-slow" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] animate-pulse-slow animation-delay-2000" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[150px] animate-spin-slow" />
-      </div>
-
-      <div className="container-custom mx-auto relative z-10">
+    <section id="experience" className="section">
+      <div className="container-custom mx-auto">
         <RevealOnScroll>
-          <div className="text-center mb-16">
-            <motion.span
-              className="badge mb-4 inline-flex items-center gap-2"
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <Zap size={14} className="text-yellow-400" />
+          <div className="text-center mb-12">
+            <span className="badge mb-4 inline-flex items-center gap-2">
               Experience
-            </motion.span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              <span className="gradient-text animate-gradient">Four Chapters</span>,
-              <br />
-              <span className="text-foreground">One Journey</span>
+            </span>
+            <h2 className="text-2xl md:text-3xl font-medium mb-4">
+              Four Chapters, One Journey
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Every role taught me something different. Together, they shaped how I think about building AI that matters.

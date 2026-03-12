@@ -85,15 +85,13 @@ const projects = [
 
 export function Projects() {
   return (
-    <section id="projects" className="section relative overflow-hidden">
+    <section id="projects" className="section">
       <div className="container-custom mx-auto">
         <RevealOnScroll>
-          <div className="text-center mb-16">
-            <span className="badge-accent mb-4 inline-block">Side Projects & Research</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              <span className="gradient-text">Curiosity</span> Projects
-              <br className="hidden md:block" />
-              <span className="text-foreground">That Became Real</span>
+          <div className="text-center mb-12">
+            <span className="badge mb-4 inline-block">Projects</span>
+            <h2 className="text-2xl md:text-3xl font-medium mb-4">
+              Side Projects & Research
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               These started as &quot;what if&quot; questions on quiet evenings. Some became research papers.
