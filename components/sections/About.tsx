@@ -9,19 +9,19 @@ const values = [
     icon: Brain,
     title: 'End-to-End Ownership',
     description:
-      'I own the full stack: data pipelines, model training, deployment, monitoring. No handoffs, no "that\'s not my job." When something breaks at 2am, I fix it.',
+      'From data pipelines to model deployment and monitoring. I own the full stack and take responsibility for what ships to production.',
   },
   {
     icon: Users,
     title: 'Business First',
     description:
-      'I start with the problem, not the tech. Stakeholders don\'t care about your architecture—they care if it works. I translate ML capabilities into business outcomes.',
+      'I start with the problem, not the tech. Translating ML capabilities into measurable business outcomes is what matters.',
   },
   {
     icon: Rocket,
-    title: 'Production or Nothing',
+    title: 'Production Ready',
     description:
-      'Jupyter notebooks don\'t count. I measure success by what\'s running in prod, handling real traffic, making real money. MLOps isn\'t overhead—it\'s the job.',
+      'Success is measured by what runs in production, handles real traffic, and drives real revenue. MLOps is core to the job.',
   },
 ]
 
@@ -30,97 +30,80 @@ export function About() {
     <section id="about" className="section">
       <div className="container-custom mx-auto">
         <RevealOnScroll>
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <span className="badge mb-4 inline-block">About</span>
             <h2 className="text-2xl md:text-3xl font-medium mb-4">
-              The Story Behind The Code
+              8 Years of Building ML Systems
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              I spent 8 years learning that the hard part of AI isn&#39;t the model—it&#39;s everything else.
-              Data quality. Latency. Edge cases. Stakeholder buy-in. Prod incidents at 3am.
-              Built retail forecasting at <span className="text-secondary font-medium">Apple</span>,
-              fraud detection at <span className="text-accent font-medium">Bank of America</span>,
-              and now GenAI infrastructure at <span className="text-primary font-medium">Macy&#39;s</span>.
-              Each role taught me that shipping beats perfecting.
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+              Data Science and ML engineering across retail analytics, financial services, and enterprise AI.
+              Built forecasting systems at Apple, fraud detection at Bank of America,
+              and now leading GenAI infrastructure at Macy&apos;s.
             </p>
           </div>
         </RevealOnScroll>
 
         {/* Value Cards */}
-        <div className="grid md:grid-cols-3 gap-4 mb-12">
+        <div className="grid md:grid-cols-3 gap-4 mb-10">
           {values.map((value, index) => (
             <RevealOnScroll key={index} delay={index * 0.1}>
-              <motion.div
-                className="glass rounded-2xl p-8 h-full hover-card group card-shine inner-light"
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                <motion.div
-                  className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center mb-6 group-hover:glow transition-all duration-500"
-                  whileHover={{ rotate: [0, -5, 5, 0] }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <value.icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform duration-300" />
-                </motion.div>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">{value.title}</h3>
-                <p className="text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">{value.description}</p>
-              </motion.div>
+              <div className="glass rounded-xl p-6 h-full">
+                <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center mb-4">
+                  <value.icon className="w-5 h-5 text-foreground" />
+                </div>
+                <h3 className="text-lg font-medium mb-2">{value.title}</h3>
+                <p className="text-sm text-muted-foreground">{value.description}</p>
+              </div>
             </RevealOnScroll>
           ))}
         </div>
 
         {/* Education & Recognition */}
         <RevealOnScroll>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4">
             {/* Education */}
-            <div className="glass rounded-2xl p-8">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-secondary/10 border border-secondary/30 flex items-center justify-center">
-                  <GraduationCap className="w-6 h-6 text-secondary" />
+            <div className="glass rounded-xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
+                  <GraduationCap className="w-5 h-5 text-foreground" />
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold">Where I Learned</h3>
-                  <p className="text-sm text-muted-foreground">The foundation of my journey</p>
-                </div>
+                <h3 className="font-medium">Education</h3>
               </div>
-              <div className="space-y-4">
-                <div className="border-l-2 border-secondary/50 pl-4">
-                  <h4 className="font-semibold">MS Business Analytics</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Northwood University • GPA: 3.87/4.00 • 2024
+              <div className="space-y-3">
+                <div className="border-l-2 border-border pl-4">
+                  <h4 className="font-medium text-sm">MS Business Analytics</h4>
+                  <p className="text-xs text-muted-foreground">
+                    Northwood University | GPA: 3.87 | 2024
                   </p>
                 </div>
-                <div className="border-l-2 border-secondary/50 pl-4">
-                  <h4 className="font-semibold">B.Tech Electronics & Communications</h4>
-                  <p className="text-sm text-muted-foreground">
-                    JNTU • 2015-2019
+                <div className="border-l-2 border-border pl-4">
+                  <h4 className="font-medium text-sm">B.Tech Electronics & Communications</h4>
+                  <p className="text-xs text-muted-foreground">
+                    JNTU | 2015-2019
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Recognition */}
-            <div className="glass rounded-2xl p-8">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/30 flex items-center justify-center">
-                  <Award className="w-6 h-6 text-accent" />
+            <div className="glass rounded-xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
+                  <Award className="w-5 h-5 text-foreground" />
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold">Moments That Mattered</h3>
-                  <p className="text-sm text-muted-foreground">Milestones along the way</p>
-                </div>
+                <h3 className="font-medium">Recognition</h3>
               </div>
-              <div className="space-y-4">
-                <div className="border-l-2 border-accent/50 pl-4">
-                  <h4 className="font-semibold">Research Publication</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Predictive Hiring with ML • IBAC May 2025
+              <div className="space-y-3">
+                <div className="border-l-2 border-border pl-4">
+                  <h4 className="font-medium text-sm">Research Publication</h4>
+                  <p className="text-xs text-muted-foreground">
+                    Predictive Hiring with ML | IBAC 2025
                   </p>
                 </div>
-                <div className="border-l-2 border-accent/50 pl-4">
-                  <h4 className="font-semibold">Spot Awards (x2)</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Apple Inc. • Exemplary Performance
+                <div className="border-l-2 border-border pl-4">
+                  <h4 className="font-medium text-sm">Spot Awards (x2)</h4>
+                  <p className="text-xs text-muted-foreground">
+                    Apple Inc. | Exemplary Performance
                   </p>
                 </div>
               </div>

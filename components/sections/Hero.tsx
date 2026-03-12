@@ -38,7 +38,7 @@ export function Hero() {
           className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight leading-[1.1] mb-6"
         >
           <span className="block text-foreground">Harika Yenuga</span>
-          <span className="block text-muted-foreground">AI/ML Engineer</span>
+          <span className="block text-muted-foreground">Data Science & AI/ML</span>
         </motion.h1>
 
         {/* Description */}
@@ -48,10 +48,8 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg text-muted-foreground max-w-xl leading-relaxed mb-10"
         >
-          Building production AI systems that scale. Currently leading GenAI at{' '}
-          <span className="text-foreground">Macy&apos;s</span>, previously at{' '}
-          <span className="text-foreground">Apple</span> and{' '}
-          <span className="text-foreground">Bank of America</span>.
+          8+ years building enterprise-grade ML systems across retail, banking, and technology.
+          From fraud detection to GenAI platforms, I ship production AI that drives real business outcomes.
         </motion.p>
 
         {/* CTAs */}

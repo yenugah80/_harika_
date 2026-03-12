@@ -1,85 +1,34 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import {
-  ExternalLink,
-  Github,
-  Utensils,
-  FileText,
-  Bot,
-  Sparkles,
-  TrendingUp,
-  Search,
-} from 'lucide-react'
+import { ExternalLink, Github } from 'lucide-react'
 import { RevealOnScroll } from '@/components/animations/RevealOnScroll'
-
-const featuredProject = {
-  title: 'MyFoodTracker',
-  tagline: 'A Personal Problem That Became a Platform',
-  description:
-    'It started with frustration. Existing nutrition apps felt slow and inaccurate. So one weekend, I decided to build something better. Six weeks later, I had a full AI platform: snap a photo, get instant nutrition data. The journey from "I can do this better" to "people are actually using this" was the most satisfying thing I have built.',
-  icon: Utensils,
-  highlights: [
-    'Trained my own vision model on 100K+ food images. Watching it correctly identify a complex salad for the first time felt like magic',
-    'Built a recommendation engine that learns what you like. Users tell me it feels like the app "gets" them',
-    'Created dashboards that make data feel personal. Seeing your progress visualized keeps people coming back',
-    'Made it production-ready because half-finished projects teach you nothing. CI/CD, Docker, auto-scaling, all of it',
-  ],
-  technologies: [
-    'TypeScript',
-    'React',
-    'Node.js',
-    'TensorFlow',
-    'D3.js',
-    'Docker',
-  ],
-  links: {
-    live: 'https://my-food-tracker.com',
-    github: 'https://github.com/yenugah80/mftweb',
-  },
-  color: 'primary',
-}
 
 const projects = [
   {
+    title: 'MyFoodTracker',
+    description: 'Full-stack AI nutrition platform with custom vision model trained on 100K+ food images. Includes recommendation engine and analytics dashboard.',
+    technologies: ['TypeScript', 'React', 'TensorFlow', 'Node.js', 'D3.js'],
+    github: 'https://github.com/yenugah80/mftweb',
+    live: 'https://my-food-tracker.com',
+    featured: true,
+  },
+  {
     title: 'Bias-Aware Hiring ML',
-    subtitle: 'Published Research | IBAC 2025',
-    description:
-      'This one kept me up at night. Hiring algorithms can perpetuate the very biases we are trying to eliminate. I wanted to prove we could have both: high accuracy AND fairness. The result? A paper accepted at IBAC 2025 showing 97% accuracy with 40% less demographic bias. Sometimes the most important problems are also the hardest.',
-    icon: TrendingUp,
+    description: 'Research paper on predictive hiring models achieving 97% accuracy with 40% less demographic bias. Published at IBAC 2025.',
     technologies: ['Python', 'CatBoost', 'XGBoost', 'SHAP', 'Fairlearn'],
-    link: 'https://github.com/yenugah80/Revolutionizing-Recruitment-Enhanced-Machine-Learning-Models-for-Bias-Mitigation-and-Efficiency',
-    color: 'secondary',
+    github: 'https://github.com/yenugah80/Revolutionizing-Recruitment-Enhanced-Machine-Learning-Models-for-Bias-Mitigation-and-Efficiency',
   },
   {
     title: 'Mermaid Maker',
-    subtitle: 'LLM-Powered Diagram Generator',
-    description:
-      'Born from the frustration of writing diagram syntax for the hundredth time. Now you just describe what you want in plain English. Over 500 diagrams generated so far. My favorite part? Watching people go from "that is cool" to "I use this every day."',
-    icon: Sparkles,
+    description: 'LLM-powered diagram generator. Describe diagrams in plain English, get Mermaid syntax. 500+ diagrams generated.',
     technologies: ['TypeScript', 'GPT-4', 'Mermaid.js', 'React'],
-    link: 'https://github.com/yenugah80/Mermaid-Maker',
-    color: 'accent',
+    github: 'https://github.com/yenugah80/Mermaid-Maker',
   },
   {
-    title: 'Enterprise Multi-Agent System',
-    subtitle: 'Production LangGraph Architecture',
-    description:
-      'I kept wishing for AI that could actually do my tedious tasks, not just chat about them. So I built it. These agents decompose problems, pick tools, write SQL, and fix their own mistakes. Watching them solve real business problems feels like glimpsing the future.',
-    icon: Bot,
-    technologies: ['LangGraph', 'LangChain', 'FastAPI', 'Bedrock', 'Python'],
-    link: 'https://github.com/yenugah80',
-    color: 'primary',
-  },
-  {
-    title: 'Neural Search Engine',
-    subtitle: 'Semantic Retrieval at Scale',
-    description:
-      'Google search is great, but what if you could search by meaning instead of keywords? Built a semantic search system that understands context, handles synonyms, and returns relevant results even when exact terms are missing. 10M+ documents indexed, sub-100ms latency.',
-    icon: Search,
-    technologies: ['FAISS', 'Sentence Transformers', 'FastAPI', 'Redis', 'Docker'],
-    link: 'https://github.com/yenugah80',
-    color: 'secondary',
+    title: 'Multi-Agent AI System',
+    description: 'Production LangGraph architecture for autonomous AI agents. Problem decomposition, tool selection, SQL generation, and self-correction.',
+    technologies: ['LangGraph', 'LangChain', 'FastAPI', 'Bedrock'],
+    github: 'https://github.com/yenugah80',
   },
 ]
 
@@ -88,165 +37,74 @@ export function Projects() {
     <section id="projects" className="section">
       <div className="container-custom mx-auto">
         <RevealOnScroll>
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <span className="badge mb-4 inline-block">Projects</span>
             <h2 className="text-2xl md:text-3xl font-medium mb-4">
               Side Projects & Research
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              These started as &quot;what if&quot; questions on quiet evenings. Some became research papers.
-              Some became tools people use daily. All of them taught me something I could not learn at work.
-            </p>
           </div>
         </RevealOnScroll>
 
-        {/* Featured Project */}
-        <RevealOnScroll>
-          <motion.div
-            className="glass rounded-3xl p-8 md:p-12 mb-12 gradient-border group"
-            whileHover={{ y: -5 }}
-          >
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/30 flex items-center justify-center group-hover:glow transition-all duration-300">
-                    <featuredProject.icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <div>
-                    <span className="badge mb-1">Featured Project</span>
-                    <h3 className="text-2xl font-bold">{featuredProject.title}</h3>
-                  </div>
-                </div>
-                <p className="text-lg text-primary font-medium mb-4">
-                  {featuredProject.tagline}
-                </p>
-                <p className="text-muted-foreground mb-6">
-                  {featuredProject.description}
-                </p>
-                <div className="flex flex-wrap gap-3 mb-6">
-                  {featuredProject.technologies.map((tech, i) => (
-                    <span key={i} className="badge">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-4">
-                  <motion.a
-                    href={featuredProject.links.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary flex items-center gap-2"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <ExternalLink size={18} />
-                    Live Demo
-                  </motion.a>
-                  <motion.a
-                    href={featuredProject.links.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-outline flex items-center gap-2"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Github size={18} />
-                    GitHub
-                  </motion.a>
-                </div>
-              </div>
-              <div className="space-y-4">
-                <h4 className="text-lg font-semibold mb-4">What I Learned Building This</h4>
-                {featuredProject.highlights.map((highlight, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-3 p-4 rounded-xl bg-primary/5 border border-primary/10"
-                  >
-                    <span className="text-primary text-lg">✓</span>
-                    <span className="text-sm">{highlight}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </RevealOnScroll>
-
-        {/* Other Projects */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-4">
           {projects.map((project, index) => (
             <RevealOnScroll key={index} delay={index * 0.1}>
-              <motion.a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="glass rounded-2xl p-6 h-full hover-card group block card-shine inner-light"
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                <div className="flex items-start gap-4 mb-4">
-                  <motion.div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 group-hover:glow transition-all duration-500"
-                    style={{
-                      background: `hsl(var(--${project.color}) / 0.1)`,
-                      borderWidth: '1px',
-                      borderColor: `hsl(var(--${project.color}) / 0.3)`,
-                    }}
-                    whileHover={{ rotate: 5, scale: 1.1 }}
-                  >
-                    <project.icon
-                      className="w-6 h-6 transition-transform duration-300 group-hover:scale-110"
-                      style={{ color: `hsl(var(--${project.color}))` }}
-                    />
-                  </motion.div>
-                  <div>
-                    <h3 className="text-lg font-bold group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    {'subtitle' in project && (
-                      <p className="text-xs text-muted-foreground mt-0.5">{project.subtitle}</p>
+              <div className={`glass rounded-xl p-6 h-full ${project.featured ? 'md:col-span-2' : ''}`}>
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="text-lg font-medium">{project.title}</h3>
+                  <div className="flex items-center gap-2">
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="View live demo"
+                        className="p-1.5 hover:bg-muted rounded-md transition-colors"
+                      >
+                        <ExternalLink size={16} className="text-muted-foreground" />
+                      </a>
                     )}
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="View on GitHub"
+                      className="p-1.5 hover:bg-muted rounded-md transition-colors"
+                    >
+                      <Github size={16} className="text-muted-foreground" />
+                    </a>
                   </div>
                 </div>
-                <p className="text-muted-foreground mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
+
+                <p className="text-sm text-muted-foreground mb-4">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-1.5">
                   {project.technologies.map((tech, i) => (
                     <span
                       key={i}
-                      className="badge text-xs"
-                      style={{
-                        background: `hsl(var(--${project.color}) / 0.1)`,
-                        color: `hsl(var(--${project.color}))`,
-                        borderColor: `hsl(var(--${project.color}) / 0.3)`,
-                      }}
+                      className="px-2 py-0.5 text-xs bg-muted rounded-md text-muted-foreground"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
-                <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground group-hover:text-primary transition-colors">
-                  <Github size={16} />
-                  <span>View on GitHub</span>
-                  <ExternalLink size={14} className="ml-auto" />
-                </div>
-              </motion.a>
+              </div>
             </RevealOnScroll>
           ))}
         </div>
 
-        {/* View All */}
         <RevealOnScroll>
-          <div className="text-center mt-12">
-            <motion.a
+          <div className="text-center mt-8">
+            <a
               href="https://github.com/yenugah80"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline inline-flex items-center gap-2"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              <Github size={18} />
-              View All Projects on GitHub
-            </motion.a>
+              <Github size={16} />
+              View all on GitHub
+            </a>
           </div>
         </RevealOnScroll>
       </div>

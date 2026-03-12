@@ -1,140 +1,31 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import {
-  Brain,
-  Database,
-  Cloud,
-  Code,
-  BarChart3,
-  Cpu,
-  Boxes,
-  Workflow,
-} from 'lucide-react'
 import { RevealOnScroll } from '@/components/animations/RevealOnScroll'
 
 const skillCategories = [
   {
-    icon: Brain,
-    title: 'Where I Live Now: GenAI',
-    color: 'primary',
-    skills: [
-      'LangChain',
-      'LangGraph',
-      'RAG Pipelines',
-      'Prompt Engineering',
-      'Fine-tuning (LoRA, QLoRA)',
-      'Claude (Bedrock)',
-      'OpenAI APIs',
-      'Gemini',
-      'FAISS',
-      'Pinecone',
-      'Semantic Kernel',
-    ],
+    title: 'GenAI & LLMs',
+    skills: ['LangChain', 'LangGraph', 'RAG Systems', 'Prompt Engineering', 'Fine-tuning', 'OpenAI', 'Claude', 'Bedrock'],
   },
   {
-    icon: Cpu,
-    title: 'The Foundation: ML',
-    color: 'secondary',
-    skills: [
-      'PyTorch',
-      'TensorFlow',
-      'XGBoost',
-      'LightGBM',
-      'Scikit-learn',
-      'Deep Learning',
-      'NLP Pipelines',
-      'Time-series',
-      'SHAP',
-      'LIME',
-    ],
+    title: 'Machine Learning',
+    skills: ['PyTorch', 'TensorFlow', 'XGBoost', 'Scikit-learn', 'Deep Learning', 'NLP', 'Time Series', 'SHAP'],
   },
   {
-    icon: Database,
-    title: 'Moving Data at Scale',
-    color: 'accent',
-    skills: [
-      'Apache Spark',
-      'PySpark',
-      'Databricks',
-      'ETL/ELT',
-      'Delta Lake',
-      'Kafka',
-      'Feature Stores',
-      'Data Modeling',
-      'Snowflake',
-      'BigQuery',
-    ],
+    title: 'Data Engineering',
+    skills: ['Spark', 'Databricks', 'Kafka', 'Delta Lake', 'Snowflake', 'BigQuery', 'ETL/ELT', 'Feature Stores'],
   },
   {
-    icon: Cloud,
-    title: 'Making It Run Anywhere',
-    color: 'primary',
-    skills: [
-      'AWS (SageMaker, Bedrock, EMR)',
-      'Azure (Databricks, ML)',
-      'GCP',
-      'Docker',
-      'Kubernetes',
-      'CI/CD',
-      'MLflow',
-      'GitHub Actions',
-    ],
+    title: 'Cloud & MLOps',
+    skills: ['AWS', 'Azure', 'GCP', 'Docker', 'Kubernetes', 'MLflow', 'CI/CD', 'SageMaker'],
   },
   {
-    icon: Code,
-    title: 'Languages I Dream In',
-    color: 'secondary',
-    skills: [
-      'Python',
-      'SQL',
-      'PySpark',
-      'R',
-      'FastAPI',
-      'REST APIs',
-      'TypeScript',
-      'Git',
-    ],
+    title: 'Languages',
+    skills: ['Python', 'SQL', 'PySpark', 'TypeScript', 'R', 'FastAPI'],
   },
   {
-    icon: BarChart3,
-    title: 'Making AI Understandable',
-    color: 'accent',
-    skills: [
-      'Model Explainability',
-      'SHAP Visualizations',
-      'Attention Maps',
-      'Embedding Projections',
-      'Streamlit Dashboards',
-      'Gradio Interfaces',
-    ],
-  },
-  {
-    icon: Boxes,
-    title: 'Where Data Lives',
-    color: 'primary',
-    skills: [
-      'PostgreSQL',
-      'MySQL',
-      'MongoDB',
-      'SQL Server',
-      'Oracle',
-      'Redshift',
-      'HBase',
-    ],
-  },
-  {
-    icon: Workflow,
-    title: 'The Future: AI Agents',
-    color: 'secondary',
-    skills: [
-      'Multi-Agent Workflows',
-      'Tool Orchestration',
-      'Guardrails',
-      'CrewAI',
-      'Evaluation Frameworks',
-      'A2A Protocol',
-    ],
+    title: 'Databases',
+    skills: ['PostgreSQL', 'MongoDB', 'Redis', 'Pinecone', 'FAISS', 'SQL Server'],
   },
 ]
 
@@ -143,63 +34,30 @@ export function Skills() {
     <section id="skills" className="section">
       <div className="container-custom mx-auto">
         <RevealOnScroll>
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <span className="badge mb-4 inline-block">Skills</span>
             <h2 className="text-2xl md:text-3xl font-medium mb-4">
-              Technologies I Work With
+              Technical Expertise
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Every tool here has a story. Some I learned through late-night debugging.
-              Others through production incidents. All of them shaped how I solve problems today.
-            </p>
           </div>
         </RevealOnScroll>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {skillCategories.map((category, index) => (
             <RevealOnScroll key={index} delay={index * 0.05}>
-              <motion.div
-                className="glass rounded-2xl p-6 h-full hover-card group card-shine inner-light glow-ring"
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:glow transition-all duration-500 group-hover:scale-110"
-                  style={{
-                    background: `hsl(var(--${category.color}) / 0.1)`,
-                    borderWidth: '1px',
-                    borderColor: `hsl(var(--${category.color}) / 0.3)`,
-                  }}
-                >
-                  <category.icon
-                    className="w-6 h-6 transition-transform duration-300 group-hover:rotate-12"
-                    style={{ color: `hsl(var(--${category.color}))` }}
-                  />
-                </div>
-                <h3 className="text-lg font-bold mb-4 group-hover:text-primary transition-colors duration-300">{category.title}</h3>
-                <div className="flex flex-wrap gap-2">
+              <div className="glass rounded-xl p-5">
+                <h3 className="text-sm font-medium mb-3 text-muted-foreground">{category.title}</h3>
+                <div className="flex flex-wrap gap-1.5">
                   {category.skills.map((skill, i) => (
-                    <motion.span
+                    <span
                       key={i}
-                      className="text-xs px-3 py-1 rounded-full border cursor-default"
-                      style={{
-                        background: `hsl(var(--${category.color}) / 0.1)`,
-                        color: `hsl(var(--${category.color}))`,
-                        borderColor: `hsl(var(--${category.color}) / 0.3)`,
-                      }}
-                      whileHover={{
-                        scale: 1.1,
-                        y: -2,
-                        backgroundColor: `hsl(var(--${category.color}) / 0.2)`,
-                      }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+                      className="px-2.5 py-1 text-xs bg-muted rounded-md"
                     >
                       {skill}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             </RevealOnScroll>
           ))}
         </div>

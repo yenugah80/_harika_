@@ -86,18 +86,6 @@ export function Navigation() {
               ))}
             </div>
 
-            {/* Resume button */}
-            <div className="hidden md:block">
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm px-4 py-2 border border-border rounded-full hover:bg-muted/50 transition-colors"
-              >
-                Resume
-              </a>
-            </div>
-
             {/* Mobile menu button */}
             <button
               type="button"
@@ -156,17 +144,6 @@ export function Navigation() {
                   </Link>
                 </motion.div>
               ))}
-              <motion.a
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 text-sm px-6 py-3 border border-border rounded-full hover:bg-muted/50 transition-colors"
-              >
-                Resume
-              </motion.a>
             </motion.nav>
           </motion.div>
         )}
