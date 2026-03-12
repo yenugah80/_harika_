@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ExternalLink, Github, Star, Sparkles } from 'lucide-react'
+import { ExternalLink, Github, Star, ArrowUpRight } from 'lucide-react'
 import { RevealOnScroll } from '@/components/animations/RevealOnScroll'
 
 const projects = [
@@ -13,8 +13,7 @@ const projects = [
     github: 'https://github.com/yenugah80/mftweb',
     live: 'https://my-food-tracker.com',
     featured: true,
-    gradient: 'from-primary/20 to-secondary/20',
-    borderColor: 'border-l-primary',
+    accent: 'primary',
   },
   {
     title: 'Bias-Aware Hiring ML',
@@ -22,8 +21,7 @@ const projects = [
     description: 'Developed predictive hiring models that achieve 97% accuracy while reducing demographic bias by 40%. Published at IBAC 2025.',
     technologies: ['Python', 'CatBoost', 'XGBoost', 'SHAP', 'Fairlearn'],
     github: 'https://github.com/yenugah80/Revolutionizing-Recruitment-Enhanced-Machine-Learning-Models-for-Bias-Mitigation-and-Efficiency',
-    gradient: 'from-secondary/20 to-accent/20',
-    borderColor: 'border-l-secondary',
+    accent: 'secondary',
   },
   {
     title: 'Mermaid Maker',
@@ -31,8 +29,7 @@ const projects = [
     description: 'Describe any diagram in plain English and get beautiful Mermaid syntax instantly. Over 500 diagrams generated and counting.',
     technologies: ['TypeScript', 'GPT-4', 'Mermaid.js', 'React'],
     github: 'https://github.com/yenugah80/Mermaid-Maker',
-    gradient: 'from-accent/20 to-primary/20',
-    borderColor: 'border-l-accent',
+    accent: 'accent',
   },
   {
     title: 'Multi-Agent AI System',
@@ -40,111 +37,148 @@ const projects = [
     description: 'Production-ready LangGraph architecture with autonomous agents that decompose problems, select tools, generate SQL, and self-correct errors.',
     technologies: ['LangGraph', 'LangChain', 'FastAPI', 'Bedrock'],
     github: 'https://github.com/yenugah80',
-    gradient: 'from-primary/20 to-accent/20',
-    borderColor: 'border-l-primary',
+    accent: 'warm',
   },
 ]
+
+const accentMap: Record<string, { border: string; text: string }> = {
+  primary: {
+    border: 'hsl(var(--primary) / 0.4)',
+    text: 'hsl(var(--primary))',
+  },
+  secondary: {
+    border: 'hsl(var(--secondary) / 0.4)',
+    text: 'hsl(var(--secondary))',
+  },
+  accent: {
+    border: 'hsl(var(--accent) / 0.4)',
+    text: 'hsl(var(--accent))',
+  },
+  warm: {
+    border: 'hsl(var(--warm-light) / 0.4)',
+    text: 'hsl(var(--warm-light))',
+  },
+}
 
 export function Projects() {
   return (
     <section id="projects" className="section">
       <div className="container-custom mx-auto">
         <RevealOnScroll>
-          <div className="text-center mb-14">
-            <span className="badge mb-4">Building</span>
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
+          <div className="section-header">
+            <span className="badge mb-6">Building</span>
+            <h2>
               Side Projects & <span className="gradient-text">Research</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p>
               What I build when nobody is watching. These projects reflect
               my curiosity and where I think AI is heading.
             </p>
           </div>
         </RevealOnScroll>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <RevealOnScroll key={index} delay={index * 0.1}>
-              <motion.div
-                className={`card-3d p-6 md:p-8 h-full border-l-4 ${project.borderColor} ${project.featured ? 'md:col-span-2' : ''}`}
-                whileHover={{ y: -6 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                {/* Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      {project.featured && (
-                        <Star size={14} className="text-primary fill-primary" />
-                      )}
-                      <span className="text-xs text-muted-foreground uppercase tracking-wide">
-                        {project.tagline}
-                      </span>
+        <div className="grid md:grid-cols-2 gap-5">
+          {projects.map((project, index) => {
+            const colors = accentMap[project.accent]
+            return (
+              <RevealOnScroll key={index} delay={index * 0.08}>
+                <motion.div
+                  className={`card-interactive p-6 md:p-8 h-full ${project.featured ? 'md:col-span-2' : ''}`}
+                  style={{ borderLeftWidth: '3px', borderLeftColor: colors.border }}
+                  whileHover={{ y: -4 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                >
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <div className="flex items-center gap-2 mb-2">
+                        {project.featured && (
+                          <Star size={14} style={{ color: colors.text, fill: colors.text }} />
+                        )}
+                        <span
+                          className="text-xs font-medium uppercase tracking-wide"
+                          style={{ color: 'hsl(var(--muted-foreground))' }}
+                        >
+                          {project.tagline}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-semibold tracking-tight">{project.title}</h3>
                     </div>
-                    <h3 className="text-xl font-semibold">{project.title}</h3>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    {project.live && (
+                    <div className="flex items-center gap-2">
+                      {project.live && (
+                        <motion.a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="View live demo"
+                          className="p-2.5 rounded-lg transition-colors"
+                          style={{ background: 'hsl(var(--muted))' }}
+                          whileHover={{ scale: 1.08, background: 'hsl(var(--card-hover))' }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <ExternalLink size={16} style={{ color: 'hsl(var(--foreground-muted))' }} />
+                        </motion.a>
+                      )}
                       <motion.a
-                        href={project.live}
+                        href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="View live demo"
-                        className="p-2 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
-                        whileHover={{ scale: 1.1 }}
+                        aria-label="View on GitHub"
+                        className="p-2.5 rounded-lg transition-colors"
+                        style={{ background: 'hsl(var(--muted))' }}
+                        whileHover={{ scale: 1.08, background: 'hsl(var(--card-hover))' }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <ExternalLink size={16} className="text-muted-foreground" />
+                        <Github size={16} style={{ color: 'hsl(var(--foreground-muted))' }} />
                       </motion.a>
-                    )}
-                    <motion.a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="View on GitHub"
-                      className="p-2 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Github size={16} className="text-muted-foreground" />
-                    </motion.a>
+                    </div>
                   </div>
-                </div>
 
-                {/* Description */}
-                <p className="text-muted-foreground leading-relaxed mb-5">
-                  {project.description}
-                </p>
+                  {/* Description */}
+                  <p className="leading-relaxed mb-6" style={{ color: 'hsl(var(--foreground-muted))' }}>
+                    {project.description}
+                  </p>
 
-                {/* Tech stack */}
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 text-xs font-medium bg-muted/50 text-muted-foreground rounded-full border border-border/50"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            </RevealOnScroll>
-          ))}
+                  {/* Tech stack */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech, i) => (
+                      <span key={i} className="tag">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              </RevealOnScroll>
+            )
+          })}
         </div>
 
         {/* GitHub CTA */}
         <RevealOnScroll>
-          <div className="text-center mt-10">
+          <div className="text-center mt-12">
             <motion.a
               href="https://github.com/yenugah80"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-muted/50 border border-border/50 text-muted-foreground hover:text-foreground hover:border-border transition-all"
-              whileHover={{ y: -2 }}
+              className="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl transition-all group"
+              style={{
+                background: 'hsl(var(--muted))',
+                border: '1px solid hsl(var(--border-muted))',
+              }}
+              whileHover={{
+                y: -2,
+                borderColor: 'hsl(var(--border))',
+              }}
             >
-              <Github size={18} />
-              <span className="font-medium">Explore more on GitHub</span>
-              <Sparkles size={14} className="text-primary" />
+              <Github size={18} style={{ color: 'hsl(var(--foreground-muted))' }} />
+              <span className="font-medium" style={{ color: 'hsl(var(--foreground-muted))' }}>
+                Explore more on GitHub
+              </span>
+              <ArrowUpRight
+                size={14}
+                className="opacity-0 group-hover:opacity-100 transition-opacity"
+                style={{ color: 'hsl(var(--primary))' }}
+              />
             </motion.a>
           </div>
         </RevealOnScroll>
