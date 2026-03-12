@@ -3,7 +3,6 @@ import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { Navigation } from '@/components/ui/Navigation'
 import { Footer } from '@/components/ui/Footer'
-import { MatrixBackground } from '@/components/animations/MatrixBackground'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -118,8 +117,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans antialiased noise">
-        <MatrixBackground />
+      <body className="font-sans antialiased">
         <Navigation />
         <main>{children}</main>
         <Footer />

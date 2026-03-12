@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(json|yml|yaml|sh\\)$\")",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npm view:*)",
+      "Bash(npx wrangler:*)",
+      "mcp__magic__21st_magic_component_inspiration",
+      "Bash(npx vercel:*)",
+      "Bash(curl -sI https://yenuga.com)",
+      "Bash(grep -l \"radial-gradient\" out/_next/static/css/*.css)",
+      "Bash(grep \"body::before\" out/_next/static/css/*.css)",
+      "Bash(grep -o \"body::[^}]*}\" out/_next/static/css/*.css)",
+      "Bash(cat out/_next/static/css/*.css)"
+    ]
+  }
+}

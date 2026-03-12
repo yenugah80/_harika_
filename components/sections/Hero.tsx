@@ -12,7 +12,7 @@ const socials = [
 
 export function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-20">
+    <section className="py-24 md:py-32 px-6 md:px-12 lg:px-24">
       <div className="max-w-3xl">
         {/* Status */}
         <motion.div
