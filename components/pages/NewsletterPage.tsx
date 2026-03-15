@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import {
   ArrowRight,
@@ -85,83 +85,6 @@ function useAnimatedCounter(end: number, duration: number = 2000) {
   return { count, startAnimation }
 }
 
-// Magnetic button component
-interface MagneticButtonProps {
-  children: React.ReactNode
-  className?: string
-  type?: 'button' | 'submit' | 'reset'
-  disabled?: boolean
-}
-
-function MagneticButton({ children, className, type = 'button', disabled }: MagneticButtonProps) {
-  const ref = useRef<HTMLButtonElement>(null)
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-
-  const springX = useSpring(x, { stiffness: 300, damping: 20 })
-  const springY = useSpring(y, { stiffness: 300, damping: 20 })
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current || disabled) return
-    const rect = ref.current.getBoundingClientRect()
-    const centerX = rect.left + rect.width / 2
-    const centerY = rect.top + rect.height / 2
-    x.set((e.clientX - centerX) * 0.15)
-    y.set((e.clientY - centerY) * 0.15)
-  }
-
-  const handleMouseLeave = () => {
-    x.set(0)
-    y.set(0)
-  }
-
-  return (
-    <motion.button
-      ref={ref}
-      type={type}
-      disabled={disabled}
-      style={{ x: springX, y: springY }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={className}
-    >
-      {children}
-    </motion.button>
-  )
-}
-
-// Particle explosion effect
-function ParticleExplosion({ trigger }: { trigger: boolean }) {
-  const particles = Array.from({ length: 20 })
-
-  return (
-    <AnimatePresence>
-      {trigger && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {particles.map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 rounded-full"
-              style={{
-                left: '50%',
-                top: '50%',
-                background: `hsl(${210 + i * 10}, 100%, 60%)`,
-              }}
-              initial={{ scale: 0, x: 0, y: 0 }}
-              animate={{
-                scale: [0, 1, 0],
-                x: Math.cos((i / 20) * Math.PI * 2) * (100 + Math.random() * 100),
-                y: Math.sin((i / 20) * Math.PI * 2) * (100 + Math.random() * 100),
-              }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-            />
-          ))}
-        </div>
-      )}
-    </AnimatePresence>
-  )
-}
 
 // Typewriter effect
 function TypewriterText({ text, className }: { text: string; className?: string }) {
@@ -234,9 +157,6 @@ function CursorGlow() {
 }
 
 export function NewsletterPage() {
-  const [email, setEmail] = useState('')
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [showParticles, setShowParticles] = useState(false)
   const connectionCount = useAnimatedCounter(2000)
   const heroRef = useRef<HTMLDivElement>(null)
 
@@ -250,28 +170,6 @@ export function NewsletterPage() {
     const rect = e.currentTarget.getBoundingClientRect()
     mouseX.set(e.clientX - rect.left)
     mouseY.set(e.clientY - rect.top)
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email) return
-
-    setStatus('loading')
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
-
-    const subscribers = JSON.parse(localStorage.getItem('newsletter_subscribers') || '[]')
-    if (!subscribers.includes(email.toLowerCase())) {
-      subscribers.push(email.toLowerCase())
-      localStorage.setItem('newsletter_subscribers', JSON.stringify(subscribers))
-    }
-
-    setStatus('success')
-    setShowParticles(true)
-    setEmail('')
-
-    setTimeout(() => setShowParticles(false), 1000)
   }
 
   return (
@@ -535,67 +433,25 @@ export function NewsletterPage() {
                       </div>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      <div className="relative group">
-                        <input
-                          type="email"
-                          placeholder="engineer@company.com"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          disabled={status === 'loading' || status === 'success'}
-                          className="w-full px-5 py-4 bg-white/[0.04] border border-white/10 rounded-xl text-base focus:outline-none focus:border-primary/50 focus:bg-white/[0.06] transition-all duration-300 disabled:opacity-50 placeholder:text-white/20 group-hover:border-white/20"
-                          required
-                        />
-                        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/20 to-secondary/20 opacity-0 group-focus-within:opacity-100 -z-10 blur-xl transition-opacity duration-500" />
-                      </div>
-
-                      <div className="relative">
-                        <ParticleExplosion trigger={showParticles} />
-                        <MagneticButton
-                          type="submit"
-                          disabled={status === 'loading' || status === 'success'}
-                          className="w-full group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-xl text-base font-semibold transition-all duration-300 disabled:opacity-50 hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02] active:scale-[0.98]"
-                        >
-                          {status === 'loading' ? (
-                            <motion.div
-                              animate={{ rotate: 360 }}
-                              transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                            >
-                              <Sparkles size={20} />
-                            </motion.div>
-                          ) : status === 'success' ? (
-                            <>
-                              <motion.div
-                                initial={{ scale: 0 }}
-                                animate={{ scale: 1 }}
-                                transition={{ type: 'spring', stiffness: 500 }}
-                              >
-                                <Check size={20} />
-                              </motion.div>
-                              <span>You&apos;re in!</span>
-                            </>
-                          ) : (
-                            <>
-                              <span>Join the community</span>
-                              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-                            </>
-                          )}
-                        </MagneticButton>
-                      </div>
-
-                      {status === 'success' && (
-                        <motion.p
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="text-center text-sm text-success"
-                        >
-                          Welcome aboard! Check your inbox for the magic link.
-                        </motion.p>
-                      )}
-                    </form>
+                    <a
+                      href="https://substack.com/@harikayenuga"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <motion.button
+                        type="button"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-xl text-base font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
+                      >
+                        <span>Subscribe on Substack</span>
+                        <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                      </motion.button>
+                    </a>
 
                     <p className="mt-4 text-center text-xs text-white/30">
-                      No spam. Unsubscribe in one click.
+                      Free newsletter on Substack
                     </p>
                   </div>
                 </div>
@@ -820,34 +676,15 @@ export function NewsletterPage() {
               Join thousands of engineers getting smarter about AI every week.
             </p>
 
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={status === 'loading' || status === 'success'}
-                className="flex-1 px-5 py-3 bg-white/[0.04] border border-white/10 rounded-full text-sm focus:outline-none focus:border-primary/50 transition-all disabled:opacity-50 placeholder:text-white/30"
-                required
-              />
-              <MagneticButton
-                type="submit"
-                disabled={status === 'loading' || status === 'success'}
-                className="px-8 py-3 bg-white text-black rounded-full text-sm font-semibold hover:bg-white/90 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
-              >
-                {status === 'success' ? (
-                  <>
-                    <Check size={16} />
-                    Done
-                  </>
-                ) : (
-                  <>
-                    Subscribe
-                    <ArrowRight size={16} />
-                  </>
-                )}
-              </MagneticButton>
-            </form>
+            <a
+              href="https://substack.com/@harikayenuga"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-white text-black rounded-full text-sm font-semibold hover:bg-white/90 transition-all"
+            >
+              Subscribe on Substack
+              <ArrowRight size={16} />
+            </a>
           </motion.div>
         </div>
       </section>
