@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import {
@@ -14,10 +14,6 @@ import {
   GitBranch,
   Layers,
   Terminal,
-  Send,
-  Star,
-  Heart,
-  Coffee,
 } from 'lucide-react'
 
 const easeOut = [0.16, 1, 0.3, 1]
@@ -35,28 +31,6 @@ const floatingIcons = [
 ]
 
 
-// Animated counter hook
-function useAnimatedCounter(end: number, duration: number = 2000) {
-  const [count, setCount] = useState(0)
-  const [hasAnimated, setHasAnimated] = useState(false)
-
-  const startAnimation = useCallback(() => {
-    if (hasAnimated) return
-    setHasAnimated(true)
-
-    const startTime = Date.now()
-    const animate = () => {
-      const elapsed = Date.now() - startTime
-      const progress = Math.min(elapsed / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(Math.floor(eased * end))
-      if (progress < 1) requestAnimationFrame(animate)
-    }
-    requestAnimationFrame(animate)
-  }, [end, duration, hasAnimated])
-
-  return { count, startAnimation }
-}
 
 
 // Typewriter effect
@@ -130,7 +104,6 @@ function CursorGlow() {
 }
 
 export function NewsletterPage() {
-  const connectionCount = useAnimatedCounter(2000)
   const heroRef = useRef<HTMLDivElement>(null)
 
   const mouseX = useMotionValue(0)
@@ -253,56 +226,15 @@ export function NewsletterPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left: Content */}
             <div>
-              {/* Live badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, ease: easeOut }}
-                className="inline-flex items-center gap-3 px-4 py-2 mb-8 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-                </span>
-                <span className="text-sm font-medium bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  New issue every Tuesday
-                </span>
-              </motion.div>
-
-              {/* Headline with typewriter */}
+              {/* Headline */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: easeOut }}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.04em] mb-6 leading-[1.1]"
               >
-                <span className="text-white/90">Where </span>
-                <span className="relative inline-block">
-                  <span className="gradient-text">AI engineers</span>
-                  <motion.svg
-                    className="absolute -bottom-2 left-0 w-full"
-                    viewBox="0 0 200 8"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 1, delay: 0.8 }}
-                  >
-                    <motion.path
-                      d="M0 4 Q50 0 100 4 T200 4"
-                      fill="none"
-                      stroke="url(#gradient)"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                    <defs>
-                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="hsl(210, 100%, 55%)" />
-                        <stop offset="100%" stopColor="hsl(24, 100%, 55%)" />
-                      </linearGradient>
-                    </defs>
-                  </motion.svg>
-                </span>
-                <br />
-                <span className="text-white/90">level up</span>
+                <span className="text-white/90">My </span>
+                <span className="gradient-text">Newsletter</span>
               </motion.h1>
 
               <motion.p
@@ -311,57 +243,8 @@ export function NewsletterPage() {
                 transition={{ duration: 0.8, delay: 0.2, ease: easeOut }}
                 className="text-lg md:text-xl text-white/40 mb-8 leading-relaxed max-w-lg"
               >
-                Deep dives into production ML, RAG systems, and multi-agent architectures.
-                No fluff. Just hard-won lessons from the trenches.
+                Insights on AI engineering, production ML systems, and lessons learned building real-world AI applications.
               </motion.p>
-
-              {/* Social proof */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3, ease: easeOut }}
-                onViewportEnter={() => connectionCount.startAnimation()}
-                className="flex flex-wrap items-center gap-6 mb-8"
-              >
-                <div className="flex -space-x-3">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ scale: 0, x: -20 }}
-                      animate={{ scale: 1, x: 0 }}
-                      transition={{ delay: 0.4 + i * 0.1 }}
-                      className="w-10 h-10 rounded-full border-2 border-black bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center text-xs font-bold"
-                    >
-                      {String.fromCharCode(64 + i)}
-                    </motion.div>
-                  ))}
-                </div>
-                <div>
-                  <div className="text-2xl font-bold tabular-nums">
-                    {connectionCount.count.toLocaleString()}+
-                  </div>
-                  <div className="text-sm text-white/40">professionals in my network</div>
-                </div>
-              </motion.div>
-
-              {/* Trust badges */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="flex flex-wrap gap-4 text-sm text-white/30"
-              >
-                {[
-                  { icon: Star, text: 'Top 10% on Substack' },
-                  { icon: Heart, text: 'Loved by 98%' },
-                  { icon: Coffee, text: '5 min read' },
-                ].map(({ icon: Icon, text }) => (
-                  <span key={text} className="flex items-center gap-1.5">
-                    <Icon size={14} className="text-primary/60" />
-                    {text}
-                  </span>
-                ))}
-              </motion.div>
             </div>
 
             {/* Right: Subscription Card */}
@@ -391,20 +274,8 @@ export function NewsletterPage() {
                   <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-primary/20 to-transparent rounded-bl-full" />
                   <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/10 to-transparent rounded-tr-full" />
 
-                  <div className="relative">
-                    <div className="flex items-center gap-3 mb-6">
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                        className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center"
-                      >
-                        <Send size={20} className="text-white" />
-                      </motion.div>
-                      <div>
-                        <h3 className="text-xl font-semibold">Subscribe</h3>
-                        <p className="text-sm text-white/40">Free forever</p>
-                      </div>
-                    </div>
+                  <div className="relative space-y-4">
+                    <h3 className="text-xl font-semibold text-center mb-6">Subscribe</h3>
 
                     <a
                       href="https://substack.com/@harikayenuga"
@@ -418,14 +289,27 @@ export function NewsletterPage() {
                         whileTap={{ scale: 0.98 }}
                         className="w-full group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-xl text-base font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
                       >
-                        <span>Subscribe on Substack</span>
+                        <span>Substack</span>
                         <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                       </motion.button>
                     </a>
 
-                    <p className="mt-4 text-center text-xs text-white/30">
-                      Free newsletter on Substack
-                    </p>
+                    <a
+                      href="https://harikayenuga.medium.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <motion.button
+                        type="button"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/10 text-white rounded-xl text-base font-semibold transition-all duration-300 hover:bg-white/20 border border-white/10"
+                      >
+                        <span>Medium</span>
+                        <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                      </motion.button>
+                    </a>
                   </div>
                 </div>
               </motion.div>
