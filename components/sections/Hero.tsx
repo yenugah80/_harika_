@@ -14,14 +14,23 @@ const easeOut = [0.16, 1, 0.3, 1]
 
 export function Hero() {
   return (
-    <section className="min-h-[92vh] flex items-center px-6 md:px-12 lg:px-20 py-24">
-      <div className="max-w-3xl">
-        {/* Status badge */}
+    <section className="min-h-screen flex items-center px-6 md:px-12 lg:px-24 py-32 relative">
+      {/* Ambient glow */}
+      <div
+        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full opacity-20 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, hsl(210 100% 55% / 0.4) 0%, transparent 70%)',
+          filter: 'blur(80px)',
+        }}
+      />
+
+      <div className="max-w-4xl relative z-10">
+        {/* Status */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: easeOut }}
-          className="mb-10"
+          transition={{ duration: 0.6, ease: easeOut }}
+          className="mb-12"
         >
           <div className="status-indicator">
             <span className="status-dot" />
@@ -29,42 +38,47 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+        {/* Name */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: easeOut }}
-          className="mb-8"
+          transition={{ duration: 0.7, delay: 0.1, ease: easeOut }}
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-[-0.04em] leading-[0.95] mb-8"
         >
-          <h1 className="text-[2.75rem] sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[-0.035em] leading-[1.08]">
-            <span className="block mb-2">Hi, I&apos;m Harika</span>
-            <span className="block gradient-text">Data Science & AI</span>
-          </h1>
-        </motion.div>
+          <span className="block">Harika Yenuga</span>
+        </motion.h1>
+
+        {/* Title */}
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: easeOut }}
+          className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-[-0.02em] mb-8"
+          style={{ color: 'hsl(var(--foreground-muted))' }}
+        >
+          Lead AI Engineer
+        </motion.p>
 
         {/* Description */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: easeOut }}
-          className="text-lg md:text-xl leading-[1.7] max-w-xl mb-12"
+          transition={{ duration: 0.7, delay: 0.3, ease: easeOut }}
+          className="text-lg md:text-xl leading-relaxed max-w-2xl mb-14"
           style={{ color: 'hsl(var(--foreground-muted))' }}
         >
-          I help companies turn complex data into intelligent systems.
-          Over 8 years, I&apos;ve built ML platforms at{' '}
-          <span className="text-primary font-medium">Apple</span>,
-          fraud detection at{' '}
-          <span className="text-secondary font-medium">Bank of America</span>,
-          and now leading GenAI at{' '}
-          <span className="text-accent font-medium">Macy&apos;s</span>.
+          8 years building AI systems that matter. Currently leading GenAI at{' '}
+          <span className="text-primary">Macy&apos;s</span>. Previously{' '}
+          <span style={{ color: 'hsl(var(--foreground))' }}>Apple</span> &{' '}
+          <span style={{ color: 'hsl(var(--foreground))' }}>Bank of America</span>.
         </motion.p>
 
         {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: easeOut }}
-          className="flex flex-wrap gap-4 mb-16"
+          transition={{ duration: 0.7, delay: 0.4, ease: easeOut }}
+          className="flex flex-wrap gap-4 mb-20"
         >
           <Link href="/blog">
             <motion.button
@@ -83,39 +97,31 @@ export function Hero() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            Let&apos;s connect
+            Get in touch
           </motion.a>
         </motion.div>
 
-        {/* Social links with animated underline */}
+        {/* Socials */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.45, ease: easeOut }}
+          transition={{ duration: 0.8, delay: 0.6, ease: easeOut }}
           className="flex items-center gap-8"
         >
-          <span className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>
-            Find me on
-          </span>
-          <div className="flex gap-8">
-            {socials.map((social) => (
-              <motion.a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative flex items-center gap-1.5 text-sm link-underline"
-                whileHover={{ y: -1 }}
-                transition={{ duration: 0.2 }}
-              >
-                {social.label}
-                <ArrowUpRight
-                  className="w-3.5 h-3.5 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0"
-                  style={{ transition: 'all 0.2s cubic-bezier(0.44, 0, 0.56, 1)' }}
-                />
-              </motion.a>
-            ))}
-          </div>
+          {socials.map((social) => (
+            <a
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-1.5 text-sm link-underline"
+            >
+              {social.label}
+              <ArrowUpRight
+                className="w-3.5 h-3.5 opacity-0 -translate-y-0.5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200"
+              />
+            </a>
+          ))}
         </motion.div>
       </div>
     </section>

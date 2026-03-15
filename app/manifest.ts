@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Lead AI Engineer specializing in LLMs, RAG, and production ML systems',
     start_url: '/',
     display: 'standalone',
-    background_color: '#f8f7ff',
-    theme_color: '#e85d4c',
+    background_color: '#000000',
+    theme_color: '#3b9eff',
     orientation: 'portrait',
     icons: [
       {

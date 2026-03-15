@@ -5,19 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: '/',
-        disallow: ['/api/', '/_next/', '/static/'],
-      },
-      {
-        userAgent: 'Googlebot',
-        allow: '/',
-      },
-      {
-        userAgent: 'Bingbot',
-        allow: '/',
+        disallow: '/',
       },
     ],
-    sitemap: 'https://yenuga.com/sitemap.xml',
-    host: 'https://yenuga.com',
   }
 }

@@ -5,9 +5,9 @@ import { ArrowUpRight } from 'lucide-react'
 
 const links = [
   { label: 'Home', href: '/' },
+  { label: 'Work', href: '/work' },
   { label: 'Writing', href: '/blog' },
-  { label: 'Work', href: '/#projects' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 const socials = [

@@ -10,33 +10,36 @@ interface RevealOnScrollProps {
   direction?: 'up' | 'down' | 'left' | 'right' | 'none'
   duration?: number
   once?: boolean
+  blur?: boolean
+  scale?: boolean
 }
 
-// Smooth easing curve
-const smoothEase = [0.25, 0.1, 0.25, 1]
+// Premium easing curve - inspired by Apple/Framer sites
+const premiumEase = [0.16, 1, 0.3, 1]
 
 export function RevealOnScroll({
   children,
   className = '',
   delay = 0,
   direction = 'up',
-  duration = 0.8,
+  duration = 0.9,
   once = true,
+  blur = true,
+  scale = false,
 }: RevealOnScrollProps) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once, amount: 0.15, margin: '-50px' })
+  const isInView = useInView(ref, { once, amount: 0.2, margin: '-80px' })
   const prefersReducedMotion = useReducedMotion()
 
-  // Reduced motion support
   if (prefersReducedMotion) {
     return <div className={className}>{children}</div>
   }
 
   const directionOffsets = {
-    up: { x: 0, y: 30 },
-    down: { x: 0, y: -30 },
-    left: { x: 30, y: 0 },
-    right: { x: -30, y: 0 },
+    up: { x: 0, y: 50 },
+    down: { x: 0, y: -50 },
+    left: { x: 50, y: 0 },
+    right: { x: -50, y: 0 },
     none: { x: 0, y: 0 },
   }
 
@@ -49,7 +52,8 @@ export function RevealOnScroll({
         opacity: 0,
         x: offset.x,
         y: offset.y,
-        filter: 'blur(4px)',
+        filter: blur ? 'blur(8px)' : 'blur(0px)',
+        scale: scale ? 0.95 : 1,
       }}
       animate={
         isInView
@@ -58,18 +62,80 @@ export function RevealOnScroll({
               x: 0,
               y: 0,
               filter: 'blur(0px)',
+              scale: 1,
             }
           : {
               opacity: 0,
               x: offset.x,
               y: offset.y,
-              filter: 'blur(4px)',
+              filter: blur ? 'blur(8px)' : 'blur(0px)',
+              scale: scale ? 0.95 : 1,
             }
       }
       transition={{
         duration,
         delay,
-        ease: smoothEase,
+        ease: premiumEase,
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+// Staggered children animation
+interface StaggerContainerProps {
+  children: ReactNode
+  className?: string
+  staggerDelay?: number
+}
+
+export function StaggerContainer({
+  children,
+  className = '',
+  staggerDelay = 0.1,
+}: StaggerContainerProps) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: staggerDelay,
+          },
+        },
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+export function StaggerItem({
+  children,
+  className = '',
+}: {
+  children: ReactNode
+  className?: string
+}) {
+  return (
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 30, filter: 'blur(6px)' },
+        visible: {
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          transition: { duration: 0.7, ease: premiumEase },
+        },
       }}
       className={className}
     >
