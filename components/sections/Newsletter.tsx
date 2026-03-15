@@ -63,7 +63,7 @@ export function Newsletter() {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle')
   const [isHovered, setIsHovered] = useState(false)
-  const subscriberCount = useAnimatedCounter(12847)
+  const connectionCount = useAnimatedCounter(2000)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -108,7 +108,7 @@ export function Newsletter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: easeOut }}
-          onViewportEnter={() => subscriberCount.startAnimation()}
+          onViewportEnter={() => connectionCount.startAnimation()}
           className="relative max-w-4xl mx-auto"
         >
           {/* Main card */}
@@ -191,8 +191,8 @@ export function Newsletter() {
                       ))}
                     </div>
                     <div className="text-sm">
-                      <span className="font-semibold tabular-nums">{subscriberCount.count.toLocaleString()}+</span>
-                      <span className="text-white/40 ml-1">engineers</span>
+                      <span className="font-semibold tabular-nums">{connectionCount.count.toLocaleString()}+</span>
+                      <span className="text-white/40 ml-1">LinkedIn connections</span>
                     </div>
                   </div>
 

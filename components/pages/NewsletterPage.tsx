@@ -237,7 +237,7 @@ export function NewsletterPage() {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [showParticles, setShowParticles] = useState(false)
-  const subscriberCount = useAnimatedCounter(12847)
+  const connectionCount = useAnimatedCounter(2000)
   const heroRef = useRef<HTMLDivElement>(null)
 
   const mouseX = useMotionValue(0)
@@ -449,7 +449,7 @@ export function NewsletterPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: easeOut }}
-                onViewportEnter={() => subscriberCount.startAnimation()}
+                onViewportEnter={() => connectionCount.startAnimation()}
                 className="flex flex-wrap items-center gap-6 mb-8"
               >
                 <div className="flex -space-x-3">
@@ -467,9 +467,9 @@ export function NewsletterPage() {
                 </div>
                 <div>
                   <div className="text-2xl font-bold tabular-nums">
-                    {subscriberCount.count.toLocaleString()}+
+                    {connectionCount.count.toLocaleString()}+
                   </div>
-                  <div className="text-sm text-white/40">engineers subscribed</div>
+                  <div className="text-sm text-white/40">LinkedIn connections</div>
                 </div>
               </motion.div>
 

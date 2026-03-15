@@ -14,7 +14,6 @@ const socials = [
   { label: 'LinkedIn', href: 'https://linkedin.com/in/harika-ye' },
   { label: 'GitHub', href: 'https://github.com/yenugah80' },
   { label: 'Medium', href: 'https://harikayenuga.medium.com' },
-  { label: 'RSS', href: '/rss.xml' },
 ]
 
 export function Footer() {
