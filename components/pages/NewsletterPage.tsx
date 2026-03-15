@@ -34,33 +34,6 @@ const floatingIcons = [
   { Icon: Sparkles, color: 'success', delay: 3.5 },
 ]
 
-// Issue previews with unique themes
-const issues = [
-  {
-    number: '042',
-    title: 'The RAG Revolution',
-    preview: 'Why retrieval-augmented generation is eating the AI world',
-    gradient: 'from-blue-500/20 via-cyan-500/10 to-transparent',
-    accent: 'cyan',
-    readers: 2847,
-  },
-  {
-    number: '041',
-    title: 'Agents Unchained',
-    preview: 'Building autonomous AI systems that actually work',
-    gradient: 'from-purple-500/20 via-pink-500/10 to-transparent',
-    accent: 'purple',
-    readers: 3156,
-  },
-  {
-    number: '040',
-    title: 'Production Pitfalls',
-    preview: 'The 7 ways your ML model will fail in prod',
-    gradient: 'from-orange-500/20 via-red-500/10 to-transparent',
-    accent: 'orange',
-    readers: 4201,
-  },
-]
 
 // Animated counter hook
 function useAnimatedCounter(end: number, duration: number = 2000) {
@@ -461,87 +434,30 @@ export function NewsletterPage() {
         </div>
       </section>
 
-      {/* Recent Issues */}
+      {/* Browse on Substack */}
       <section className="py-24 px-6 md:px-12 lg:px-24">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: easeOut }}
-            className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] mb-4">
-              Recent <span className="gradient-text">editions</span>
+              Read my <span className="gradient-text">writing</span>
             </h2>
-            <p className="text-white/40 max-w-md mx-auto">
-              A taste of what lands in your inbox every week
+            <p className="text-white/40 max-w-md mx-auto mb-8">
+              Deep dives into AI engineering, production ML, and career insights
             </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {issues.map((issue, index) => (
-              <motion.article
-                key={issue.number}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15, duration: 0.6, ease: easeOut }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="group relative cursor-pointer"
-              >
-                {/* Glow effect on hover */}
-                <div className={`absolute -inset-2 bg-gradient-to-r ${issue.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-
-                <div className="relative h-full p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] group-hover:border-white/20 transition-all duration-500 overflow-hidden">
-                  {/* Issue number */}
-                  <div className="absolute top-4 right-4 text-6xl font-black text-white/[0.03] group-hover:text-white/[0.06] transition-colors">
-                    #{issue.number}
-                  </div>
-
-                  <div className="relative">
-                    <span className={`inline-block px-3 py-1 mb-4 text-xs font-medium rounded-full bg-${issue.accent}-500/10 text-${issue.accent}-400 border border-${issue.accent}-500/20`}>
-                      Issue #{issue.number}
-                    </span>
-
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                      {issue.title}
-                    </h3>
-
-                    <p className="text-sm text-white/40 mb-4">
-                      {issue.preview}
-                    </p>
-
-                    <div className="flex items-center justify-between text-xs text-white/30">
-                      <span>{issue.readers.toLocaleString()} readers</span>
-                      <motion.span
-                        className="flex items-center gap-1 text-primary opacity-0 group-hover:opacity-100"
-                        initial={{ x: -10 }}
-                        whileHover={{ x: 0 }}
-                      >
-                        Read issue <ArrowRight size={12} />
-                      </motion.span>
-                    </div>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="text-center mt-12"
-          >
-            <Link
-              href="/blog"
+            <a
+              href="https://substack.com/@harikayenuga"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-full border border-white/10 hover:border-white/20 hover:bg-white/[0.02] transition-all duration-300 group"
             >
-              Browse all issues
+              Browse on Substack
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </a>
           </motion.div>
         </div>
       </section>
