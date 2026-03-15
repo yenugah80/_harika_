@@ -147,7 +147,7 @@ export function WorkPage() {
             transition={{ duration: 0.8, delay: 0.2, ease: easeOut }}
             className="text-xl text-white/50 max-w-2xl"
           >
-            8 years of building AI systems at scale—from satellite imagery to
+            8 years of building AI systems at scale, from satellite imagery to
             fraud detection to retail GenAI.
           </motion.p>
         </motion.div>

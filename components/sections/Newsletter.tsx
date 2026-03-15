@@ -192,7 +192,7 @@ export function Newsletter() {
                     </div>
                     <div className="text-sm">
                       <span className="font-semibold tabular-nums">{connectionCount.count.toLocaleString()}+</span>
-                      <span className="text-white/40 ml-1">LinkedIn connections</span>
+                      <span className="text-white/40 ml-1">in my network</span>
                     </div>
                   </div>
 

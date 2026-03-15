@@ -49,7 +49,7 @@ export function Story() {
               actionable insights for smart cities. That spark led me through
               <span className="text-primary"> Apple</span>,
               <span className="text-primary"> Bank of America</span>, and now
-              <span className="text-primary"> Macy&apos;s</span>—each role teaching me
+              <span className="text-primary"> Macy&apos;s</span>. Each role teaching me
               that the real challenge isn&apos;t building models, it&apos;s building trust.
             </p>
           </RevealOnScroll>

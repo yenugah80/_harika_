@@ -16,7 +16,7 @@ export function About() {
             </h2>
 
             <p className="text-xl md:text-2xl leading-relaxed text-white/60 mb-6">
-              The hard part of AI isn&apos;t building the model—it&apos;s everything else.
+              The hard part of AI isn&apos;t building the model. It&apos;s everything else.
               Data quality, stakeholder alignment, production reliability, and building
               systems people actually trust.
             </p>

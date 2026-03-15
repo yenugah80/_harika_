@@ -469,7 +469,7 @@ export function NewsletterPage() {
                   <div className="text-2xl font-bold tabular-nums">
                     {connectionCount.count.toLocaleString()}+
                   </div>
-                  <div className="text-sm text-white/40">LinkedIn connections</div>
+                  <div className="text-sm text-white/40">professionals in my network</div>
                 </div>
               </motion.div>
 
