@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import {
@@ -15,6 +15,7 @@ import {
   Layers,
   Terminal,
 } from 'lucide-react'
+import { SubstackFeed } from '../SubstackFeed'
 
 const easeOut = [0.16, 1, 0.3, 1]
 
@@ -318,28 +319,40 @@ export function NewsletterPage() {
         </div>
       </section>
 
-      {/* Browse on Substack */}
+      {/* Latest Articles */}
       <section className="py-24 px-6 md:px-12 lg:px-24">
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: easeOut }}
+            className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] mb-4">
-              Read my <span className="gradient-text">writing</span>
+              Latest <span className="gradient-text">Articles</span>
             </h2>
-            <p className="text-white/40 max-w-md mx-auto mb-8">
-              Deep dives into AI engineering, production ML, and career insights
+            <p className="text-white/40 max-w-md mx-auto">
+              Recent posts from my Substack
             </p>
+          </motion.div>
+
+          <SubstackFeed />
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center mt-8"
+          >
             <a
               href="https://substack.com/@harikayenuga"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-full border border-white/10 hover:border-white/20 hover:bg-white/[0.02] transition-all duration-300 group"
             >
-              Browse on Substack
+              View all on Substack
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
