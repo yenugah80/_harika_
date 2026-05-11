@@ -1,5 +1,5 @@
 import { getAllPosts } from '@/lib/blog'
-import { BlogList } from '@/components/BlogList'
+import { BlogList } from '@/components/blog/BlogList'
 
 export const metadata = {
   title: 'Blog',

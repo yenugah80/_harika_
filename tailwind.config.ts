@@ -33,7 +33,8 @@ const config: Config = {
         border: 'hsl(var(--border))',
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        sans: ['Mona Sans', 'var(--font-manrope)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-fraunces)', 'Georgia', 'serif'],
         mono: ['var(--font-jetbrains)', 'monospace'],
       },
       animation: {

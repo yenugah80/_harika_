@@ -1,6 +1,6 @@
 ---
 title: "Mitigating Bias in ML-Powered Hiring: What Actually Works"
-description: "Research-backed strategies for building fairer AI systems in recruitment, based on my published work and industry experience."
+description: "Research-backed strategies for building fairer AI systems in recruitment, based on my published work and production experience."
 date: "2024-01-15"
 author: "Harika Yenuga"
 tags: ["ML Ethics", "Fairness", "Research", "Hiring"]
@@ -10,7 +10,7 @@ published: true
 
 Machine learning in hiring is a double-edged sword. Done right, it can reduce human bias and find great candidates. Done wrong, it amplifies existing inequities at scale. Based on my research and production experience, here's what actually works.
 
-## The Problem is Real
+## The problem is real
 
 Historical hiring data is biased. Period. If you train on past decisions, you encode past biases:
 
@@ -19,13 +19,13 @@ Historical hiring data is biased. Period. If you train on past decisions, you en
 - University prestige as a proxy for socioeconomic status
 - Age discrimination hidden in "years of experience"
 
-Simply removing protected attributes doesn't work - proxies leak through.
+Simply removing protected attributes doesn't work. Proxies leak through.
 
-## Three Approaches to Fairness
+## Three approaches to fairness
 
 In my research, I evaluated three main approaches:
 
-### 1. Pre-processing: Fix the Data
+### 1. Pre-processing: fix the data
 
 Remove or transform biased features before training.
 
@@ -48,10 +48,10 @@ lfr = LFR(
 transformed_data = lfr.fit_transform(training_data)
 ```
 
-**Pros**: Model-agnostic, interpretable
-**Cons**: May lose predictive signal
+Pros: model-agnostic, interpretable
+Cons: may lose predictive signal
 
-### 2. In-processing: Fair Learning
+### 2. In-processing: fair learning
 
 Modify the training objective to include fairness constraints.
 
@@ -69,10 +69,10 @@ debiased_model = AdversarialDebiasing(
 debiased_model.fit(training_data)
 ```
 
-**Pros**: Directly optimizes for fairness
-**Cons**: Harder to implement, may reduce accuracy
+Pros: directly optimizes for fairness
+Cons: harder to implement, may reduce accuracy
 
-### 3. Post-processing: Adjust Outputs
+### 3. Post-processing: adjust outputs
 
 Modify predictions after the model runs.
 
@@ -90,10 +90,10 @@ calibrator.fit(validation_data, predictions)
 fair_predictions = calibrator.predict(test_data, test_predictions)
 ```
 
-**Pros**: Easy to implement, preserves model
-**Cons**: Can feel like "gaming" the system
+Pros: easy to implement, preserves model
+Cons: can feel like "gaming" the system
 
-## What We Found
+## What we found
 
 In our research comparing these approaches on real hiring data:
 
@@ -108,11 +108,11 @@ The "best" approach depends on your constraints:
 - **Maximum fairness?** In-processing
 - **Need interpretability?** Pre-processing
 
-## Beyond Technical Solutions
+## Beyond technical fixes
 
 Technical fixes aren't enough. Here's what we also implemented:
 
-### 1. Human Review for Edge Cases
+### 1. Human review for edge cases
 
 ```python
 def should_human_review(prediction, confidence):
@@ -125,21 +125,21 @@ def should_human_review(prediction, confidence):
     return False
 ```
 
-### 2. Regular Audits
+### 2. Regular audits
 
 We run bias audits monthly:
 - Demographic parity across groups
 - Equalized odds analysis
 - Intersectional analysis (e.g., women of color)
 
-### 3. Feedback Loops
+### 3. Feedback loops
 
 Track outcomes to detect drift:
 - Who gets interviews?
 - Who gets hired?
 - Who succeeds long-term?
 
-## The Uncomfortable Truth
+## The uncomfortable truth
 
 Even with perfect technical solutions, there's a fundamental question: **should we use ML in hiring at all?**
 
@@ -155,17 +155,17 @@ Arguments against:
 
 My view: Use ML to **assist** human decision-makers, not replace them. Surface candidates who might be overlooked. Flag potential bias in human decisions. But keep humans accountable.
 
-## Practical Recommendations
+## Practical recommendations
 
 If you're building hiring ML:
 
-1. **Start with diverse training data** - If possible, not just historical decisions
-2. **Use multiple fairness metrics** - No single metric captures all aspects
-3. **Build in human oversight** - Especially for final decisions
-4. **Audit continuously** - Bias drifts over time
-5. **Be transparent** - Candidates deserve to know how they're evaluated
+1. **Start with diverse training data**, not just historical decisions when possible
+2. **Use multiple fairness metrics**, because no single metric captures every failure mode
+3. **Build in human oversight**, especially for final decisions
+4. **Audit continuously**, because bias drifts over time
+5. **Be transparent**, because candidates deserve to know how they're evaluated
 
-## Further Reading
+## Further reading
 
 - [Our research paper on arXiv](https://arxiv.org/your-paper)
 - [AIF360 Toolkit](https://aif360.mybluemix.net/)

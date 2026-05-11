@@ -3,13 +3,13 @@
 import { motion } from 'framer-motion'
 import { Mail, CheckCircle, Sparkles } from 'lucide-react'
 import Link from 'next/link'
-import { NewsletterSignup } from '@/components/NewsletterSignup'
+import { NewsletterSignup } from '@/components/newsletter/NewsletterSignup'
 
 export default function SubscribePage() {
   const benefits = [
-    'Weekly insights on AI/ML engineering',
-    'Early access to my research and projects',
-    'Practical tips from production systems',
+    'Practical notes on AI/ML engineering',
+    'Updates on research and projects',
+    'Lessons from production systems',
     'No spam, unsubscribe anytime',
   ]
 
@@ -25,13 +25,13 @@ export default function SubscribePage() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm mb-6">
               <Sparkles className="w-4 h-4" />
-              Join 1,000+ engineers
+              AI engineering notes
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               <span className="gradient-text">Subscribe to my newsletter</span>
             </h1>
             <p className="text-xl text-muted-foreground">
-              Get weekly insights on AI, machine learning, and building great products delivered to your inbox.
+              Get concise notes on AI, machine learning, and production systems.
             </p>
           </motion.div>
 
@@ -43,7 +43,7 @@ export default function SubscribePage() {
             className="mb-12"
           >
             <div className="bg-card rounded-2xl border border-border p-8">
-              <h2 className="text-lg font-semibold mb-6">What you'll get:</h2>
+              <h2 className="text-lg font-semibold mb-6">What you&apos;ll get</h2>
               <ul className="space-y-4">
                 {benefits.map((benefit, index) => (
                   <motion.li

@@ -1,13 +1,19 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Fraunces, JetBrains_Mono, Manrope } from 'next/font/google'
 import './globals.css'
 import { Navigation } from '@/components/ui/Navigation'
 import { Footer } from '@/components/ui/Footer'
-import { Analytics } from '@/components/Analytics'
+import { Analytics } from '@/components/analytics/Analytics'
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-manrope',
+  display: 'swap',
+})
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-fraunces',
   display: 'swap',
 })
 
@@ -196,7 +202,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}>
       <head>
         <link rel="canonical" href="https://yenuga.com" />
         <link rel="icon" href="/favicon.ico" sizes="any" />

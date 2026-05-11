@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, FileText, PenTool, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
-import { NewsletterSignup } from '@/components/NewsletterSignup'
+import { NewsletterSignup } from '@/components/newsletter/NewsletterSignup'
 import { TiltCard } from '@/components/ui/TiltCard'
 
 interface BlogPostMeta {
@@ -24,9 +24,9 @@ interface Props {
 
 const research = [
   {
-    title: 'Revolutionizing Recruitment: ML Models for Bias Mitigation',
+    title: 'Bias-Aware Hiring ML',
     venue: 'IBAC 2025',
-    description: 'Predictive hiring models achieving 97% accuracy while reducing demographic bias by 40%. A step toward fairer AI in HR.',
+    description: 'Predictive hiring research focused on model accuracy, fairness, and measurable bias reduction.',
     link: 'https://github.com/yenugah80/Revolutionizing-Recruitment-Enhanced-Machine-Learning-Models-for-Bias-Mitigation-and-Efficiency',
     tags: ['Machine Learning', 'Fairness', 'HR Tech'],
   },
@@ -35,19 +35,19 @@ const research = [
 const externalArticles = [
   {
     title: 'Building Production-Ready RAG Systems',
-    description: 'The architecture patterns, pitfalls, and optimizations that make RAG work at enterprise scale.',
+    description: 'Architecture patterns and evaluation practices for reliable enterprise RAG systems.',
     link: 'https://harikayenuga.medium.com',
     tags: ['RAG', 'LLMs', 'Architecture'],
   },
   {
     title: 'Multi-Agent AI: From Concept to Production',
-    description: 'How I built reliable multi-agent systems using LangGraph, and what I learned along the way.',
+    description: 'Lessons from building reliable multi-agent workflows with LangGraph.',
     link: 'https://harikayenuga.medium.com',
     tags: ['LangGraph', 'Agents', 'Production'],
   },
   {
     title: 'The Future of AI in Retail',
-    description: 'Where GenAI and LLMs are transforming customer experience and operational efficiency.',
+    description: 'How GenAI is shaping customer experience and operational efficiency in retail.',
     link: 'https://harikayenuga.medium.com',
     tags: ['Retail', 'GenAI', 'Strategy'],
   },
@@ -83,11 +83,11 @@ export function BlogList({ initialPosts }: Props) {
             href="/"
             className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-primary transition-colors mb-8 group"
           >
-            <span className="group-hover:-translate-x-1 transition-transform">←</span>
+            <span className="group-hover:-translate-x-1 transition-transform">&larr;</span>
             Back home
           </Link>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.04em] mb-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-normal mb-4">
             Writing & <span className="gradient-text">Research</span>
           </h1>
           <p className="text-lg text-white/50 max-w-xl">
@@ -150,7 +150,7 @@ export function BlogList({ initialPosts }: Props) {
                       </span>
                       <ExternalLink size={18} className="text-white/30 group-hover:text-secondary transition-colors" />
                     </div>
-                    <h3 className="text-xl md:text-2xl font-semibold mb-3 group-hover:text-secondary transition-colors">
+                    <h3 className="break-words text-xl md:text-2xl font-semibold leading-tight mb-3 group-hover:text-secondary transition-colors">
                       {paper.title}
                     </h3>
                     <p className="text-white/50 mb-4">{paper.description}</p>
@@ -196,7 +196,7 @@ export function BlogList({ initialPosts }: Props) {
                       <div className="group py-6 border-t border-white/[0.06] hover:border-white/[0.12] transition-colors">
                         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                           <div className="flex-1">
-                            <h3 className="text-xl font-medium mb-2 group-hover:text-primary transition-colors">
+                            <h3 className="break-words text-xl font-medium leading-tight mb-2 group-hover:text-primary transition-colors">
                               {post.title}
                             </h3>
                             <p className="text-white/40 line-clamp-2 mb-3 text-sm">
@@ -251,7 +251,7 @@ export function BlogList({ initialPosts }: Props) {
                     transition={{ delay: index * 0.05 }}
                     className="group p-5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12] transition-all duration-300"
                   >
-                    <h3 className="font-medium mb-2 group-hover:text-primary transition-colors">
+                    <h3 className="break-words font-medium leading-tight mb-2 group-hover:text-primary transition-colors">
                       {article.title}
                     </h3>
                     <p className="text-sm text-white/40 mb-3">{article.description}</p>
@@ -291,3 +291,4 @@ export function BlogList({ initialPosts }: Props) {
     </div>
   )
 }
+

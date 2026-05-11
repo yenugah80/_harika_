@@ -80,9 +80,6 @@ export function Footer() {
             <p className="text-xs text-muted-foreground">
               &copy; {currentYear} Harika Yenuga. All rights reserved.
             </p>
-            <p className="text-xs text-muted-foreground">
-              Built with Next.js
-            </p>
           </div>
         </div>
       </div>

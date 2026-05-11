@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getAllPosts, getPostBySlug } from '@/lib/blog'
-import { BlogPostContent } from '@/components/BlogPostContent'
+import { BlogPostContent } from '@/components/blog/BlogPostContent'
 import type { Metadata } from 'next'
 
 interface Props {

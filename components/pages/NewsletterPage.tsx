@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import {
@@ -15,7 +15,7 @@ import {
   Layers,
   Terminal,
 } from 'lucide-react'
-import { SubstackFeed } from '../SubstackFeed'
+import { SubstackFeed } from '@/components/newsletter/SubstackFeed'
 
 const easeOut = [0.16, 1, 0.3, 1]
 
@@ -232,7 +232,7 @@ export function NewsletterPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: easeOut }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.04em] mb-6 leading-[1.1]"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-normal mb-6 leading-tight"
               >
                 <span className="text-white/90">My </span>
                 <span className="gradient-text">Newsletter</span>
@@ -329,7 +329,7 @@ export function NewsletterPage() {
             transition={{ duration: 0.6, ease: easeOut }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-normal mb-4">
               Latest <span className="gradient-text">Articles</span>
             </h2>
             <p className="text-white/40 max-w-md mx-auto">
@@ -419,7 +419,7 @@ export function NewsletterPage() {
 
             {/* Right: Content */}
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-normal mb-6">
                 What you&apos;ll <span className="gradient-text">learn</span>
               </h2>
 
@@ -430,8 +430,8 @@ export function NewsletterPage() {
                     description: 'How to design ML systems that scale and survive real-world traffic',
                   },
                   {
-                    title: 'RAG Best Practices',
-                    description: 'Advanced retrieval techniques, chunking strategies, and evaluation methods',
+                    title: 'RAG Patterns That Work',
+                    description: 'Retrieval techniques, chunking strategies, and evaluation methods',
                   },
                   {
                     title: 'Agent Engineering',
@@ -439,7 +439,7 @@ export function NewsletterPage() {
                   },
                   {
                     title: 'Career Insights',
-                    description: 'Navigate the AI job market and level up your engineering career',
+                    description: 'Plan around the AI job market and grow your engineering career',
                   },
                 ].map((item, i) => (
                   <motion.div
@@ -482,7 +482,7 @@ export function NewsletterPage() {
               <Sparkles size={48} className="text-primary" />
             </motion.div>
 
-            <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-normal mb-4">
               Ready to <span className="gradient-text">level up</span>?
             </h2>
             <p className="text-white/40 mb-8 max-w-md mx-auto">

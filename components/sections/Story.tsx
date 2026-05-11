@@ -7,7 +7,7 @@ const milestones = [
   {
     year: '2025',
     title: 'Leading GenAI at Macy\'s',
-    description: 'Building the AI platform from scratch, architecting RAG systems for 500+ stores.',
+    description: 'Building AI platforms and RAG workflows for retail operations.',
   },
   {
     year: '2022',
@@ -46,7 +46,7 @@ export function Story() {
           <RevealOnScroll>
             <p className="text-xl md:text-2xl leading-relaxed text-white/80 mb-12">
               I fell in love with data when I saw satellite imagery transform into
-              actionable insights for smart cities. That spark led me through
+              planning signals for smart cities. That spark led me through
               <span className="text-primary"> Apple</span>,
               <span className="text-primary"> Bank of America</span>, and now
               <span className="text-primary"> Macy&apos;s</span>. Each role teaching me

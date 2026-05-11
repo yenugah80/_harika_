@@ -2,32 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Mona Sans';
+  src:
+    url('https://assets.codepen.io/64/Mona-Sans.woff2') format('woff2 supports variations'),
+    url('https://assets.codepen.io/64/Mona-Sans.woff2') format('woff2-variations');
+  font-weight: 100 1000;
+  font-display: swap;
+}
+
 :root {
-  /* True dark - inspired by premium portfolios */
-  --background: 0 0% 0%;
-  --background-elevated: 0 0% 4%;
-  --foreground: 0 0% 100%;
-  --foreground-muted: 0 0% 60%;
+  /* Deep charcoal - warm, luxurious dark */
+  --background: 20 10% 4%;
+  --background-elevated: 20 8% 8%;
+  --foreground: 45 30% 96%;
+  --foreground-muted: 30 10% 55%;
 
-  /* Electric blue - primary accent */
-  --primary: 210 100% 55%;
-  --primary-glow: 210 100% 50%;
+  /* Champagne gold - primary accent */
+  --primary: 43 65% 65%;
+  --primary-glow: 43 70% 55%;
 
-  /* Warm orange - secondary accent */
-  --secondary: 24 100% 55%;
-  --secondary-glow: 24 100% 50%;
+  /* Rose gold - secondary accent */
+  --secondary: 15 45% 65%;
+  --secondary-glow: 15 50% 55%;
 
-  /* Subtle purple */
-  --accent: 260 70% 60%;
+  /* Warm ivory - accent */
+  --accent: 35 40% 75%;
 
-  /* Success green */
-  --success: 150 70% 45%;
+  /* Sage green - success */
+  --success: 140 30% 50%;
 
-  /* UI surfaces */
-  --card: 0 0% 6%;
-  --card-hover: 0 0% 9%;
-  --border: 0 0% 15%;
-  --border-hover: 0 0% 25%;
+  /* UI surfaces - warm tones */
+  --card: 20 8% 9%;
+  --card-hover: 20 8% 13%;
+  --border: 30 8% 18%;
+  --border-hover: 35 12% 28%;
 
   --radius: 16px;
   --radius-sm: 10px;
@@ -38,6 +47,10 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --transition: 0.3s var(--ease);
   --transition-slow: 0.5s var(--ease-out);
+
+  --button-icon-scale: 0;
+  --button-icon-rotation: 0deg;
+  --button-icon-opacity: 0;
 }
 
 * {
@@ -59,41 +72,46 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'kern' 1, 'liga' 1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   line-height: 1.6;
 }
 
-/* Ambient gradient orbs */
 body::before {
   content: '';
   position: fixed;
-  top: -20%;
-  left: -10%;
-  width: 60%;
-  height: 60%;
-  background: radial-gradient(
-    circle,
-    hsl(var(--primary-glow) / 0.12) 0%,
-    transparent 60%
-  );
+  inset: 0;
+  background:
+    linear-gradient(90deg, hsl(43 70% 65% / 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, hsl(188 70% 55% / 0.035) 1px, transparent 1px);
+  background-size: 120px 120px;
   pointer-events: none;
   z-index: -1;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
 }
 
 body::after {
   content: '';
   position: fixed;
-  bottom: -30%;
-  right: -15%;
-  width: 70%;
-  height: 70%;
-  background: radial-gradient(
-    circle,
-    hsl(var(--secondary-glow) / 0.08) 0%,
-    transparent 55%
-  );
+  inset: 0;
+  background:
+    linear-gradient(135deg, transparent 0 18%, hsl(351 83% 70% / 0.06) 18% 18.4%, transparent 18.4% 100%),
+    linear-gradient(42deg, transparent 0 54%, hsl(168 72% 54% / 0.05) 54% 54.35%, transparent 54.35% 100%);
   pointer-events: none;
   z-index: -1;
+}
+
+.portfolio-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.075) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.portfolio-weave {
+  background:
+    linear-gradient(115deg, transparent 0 34%, rgba(246, 213, 139, 0.08) 34% 34.35%, transparent 34.35% 100%),
+    linear-gradient(65deg, transparent 0 62%, rgba(110, 231, 249, 0.07) 62% 62.35%, transparent 62.35% 100%),
+    linear-gradient(158deg, transparent 0 78%, rgba(251, 113, 133, 0.06) 78% 78.25%, transparent 78.25% 100%);
 }
 
 /* Section spacing - generous like reference sites */
@@ -180,12 +198,13 @@ body::after {
   transition: all var(--transition);
 }
 
-/* Gradient text */
+/* Gradient text - champagne to rose gold */
 .gradient-text {
   background: linear-gradient(
     135deg,
-    hsl(var(--primary)) 0%,
-    hsl(var(--secondary)) 100%
+    hsl(43 70% 70%) 0%,
+    hsl(30 55% 65%) 50%,
+    hsl(15 50% 65%) 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -239,6 +258,84 @@ body::after {
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 30px hsl(var(--foreground) / 0.2);
+}
+
+.playful-cta {
+  --button-icon-scale: 0;
+  --button-icon-rotation: 0deg;
+  --button-icon-opacity: 0;
+  isolation: isolate;
+  overflow: visible;
+  position: relative;
+}
+
+.playful-cta::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #230a2f, #602ba8 56%, #9e4ad9);
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.playful-cta::after {
+  content: '';
+  position: absolute;
+  left: -0.7rem;
+  top: -0.8rem;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 30%, #fff 0 18%, transparent 19%),
+    radial-gradient(circle at 70% 35%, #ff8df2 0 22%, transparent 23%),
+    radial-gradient(circle at 48% 72%, #ffbe4d 0 20%, transparent 21%);
+  filter: drop-shadow(0 7px 14px rgb(63 26 115 / 0.24));
+  opacity: var(--button-icon-opacity);
+  transform: scale(var(--button-icon-scale)) rotate(var(--button-icon-rotation));
+  transition: transform 220ms ease, opacity 180ms ease;
+}
+
+.playful-cta:hover {
+  --button-icon-scale: 1;
+  --button-icon-rotation: -14deg;
+  transform: translateY(-2px) scale(1.01);
+}
+
+.playful-cta:hover::before {
+  opacity: 1;
+  transform: scale(1.03);
+  box-shadow: 0 16px 34px -16px #a13cb2;
+}
+
+.playful-cta:active {
+  --button-icon-scale: 0.78;
+  --button-icon-rotation: 18deg;
+  transform: translateY(0) scale(1.02);
+}
+
+.playful-cta .playful-spark {
+  position: absolute;
+  right: -0.55rem;
+  bottom: -0.55rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 35% 35%, #5ed8b8 0 22%, transparent 23%),
+    radial-gradient(circle at 70% 40%, #fff 0 16%, transparent 17%),
+    radial-gradient(circle at 50% 76%, #a99bff 0 20%, transparent 21%);
+  opacity: var(--button-icon-opacity);
+  transform: scale(var(--button-icon-scale)) rotate(12deg);
+  transition: transform 220ms ease, opacity 180ms ease;
+  pointer-events: none;
+}
+
+.playful-cta:hover .playful-spark {
+  transform: scale(var(--button-icon-scale)) rotate(18deg);
 }
 
 /* Outline button */
@@ -379,8 +476,8 @@ body::after {
   width: 1px;
   background: linear-gradient(
     180deg,
-    hsl(var(--primary) / 0.5),
-    hsl(var(--secondary) / 0.3),
+    hsl(43 60% 60% / 0.5),
+    hsl(15 45% 55% / 0.3),
     transparent
   );
 }
@@ -458,4 +555,174 @@ body::after {
 
 .glow-secondary {
   box-shadow: 0 0 60px hsl(var(--secondary) / 0.3);
+}
+
+.architecture-energy {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.architecture-energy .bolt {
+  position: absolute;
+  left: 8%;
+  top: 50%;
+  height: 8px;
+  width: 8px;
+  border-radius: 999px;
+  transform-origin: 4px 4px;
+  animation: signal-woosh 3.8s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+}
+
+.architecture-energy .bolt.white {
+  background: #fff8fd;
+  box-shadow: 0 0 28px rgb(255 250 244 / 0.55);
+}
+
+.architecture-energy .bolt.coral {
+  background: #ff8da1;
+  box-shadow: 0 0 28px rgb(255 141 161 / 0.45);
+  animation-delay: 0.18s;
+}
+
+.architecture-energy .burst {
+  position: absolute;
+  left: 48%;
+  top: 36%;
+  width: 72px;
+  height: 72px;
+}
+
+.architecture-energy .burst.second {
+  left: 70%;
+  top: 58%;
+}
+
+.architecture-energy .shape {
+  position: absolute;
+  opacity: 0;
+  transform-origin: center center;
+  animation-duration: 3.8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-out;
+}
+
+.architecture-energy .circle {
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgb(255 250 244 / 0.76);
+  border-radius: 999px;
+  animation-name: signal-circle;
+}
+
+.architecture-energy .circle.big {
+  width: 42px;
+  height: 42px;
+  border-width: 2px;
+  animation-delay: 0.12s;
+}
+
+.architecture-energy .disc {
+  left: 32px;
+  top: 22px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #a99bff;
+  animation-name: signal-disc;
+}
+
+.architecture-energy .triangle {
+  left: 16px;
+  top: 32px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 5px 10px;
+  border-color: transparent transparent #5ed8b8;
+  animation-name: signal-triangle;
+}
+
+.architecture-energy .triangle.big {
+  left: 44px;
+  top: 14px;
+  border-width: 0 7px 14px;
+  border-color: transparent transparent #ffbe4d;
+}
+
+.architecture-energy .burst.second .shape {
+  animation-delay: 1.8s;
+}
+
+@keyframes signal-woosh {
+  0% {
+    width: 8px;
+    transform: translate(0, 0) rotate(-28deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    width: 42px;
+  }
+  30% {
+    width: 8px;
+    transform: translate(190px, -72px) rotate(-20deg);
+  }
+  52% {
+    width: 64px;
+    transform: translate(330px, 18px) rotate(18deg);
+  }
+  72% {
+    width: 8px;
+    transform: translate(470px, -8px) rotate(-12deg);
+    opacity: 1;
+  }
+  100% {
+    width: 8px;
+    transform: translate(570px, 0) rotate(-12deg);
+    opacity: 0;
+  }
+}
+
+@keyframes signal-circle {
+  0%, 64%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  68% {
+    opacity: 1;
+  }
+  84% {
+    opacity: 0;
+    transform: scale(2.1);
+  }
+}
+
+@keyframes signal-disc {
+  0%, 64%, 100% {
+    opacity: 0;
+    transform: scale(0.5) translate(0, 0);
+  }
+  68% {
+    opacity: 1;
+  }
+  84% {
+    opacity: 0;
+    transform: scale(1.8) translate(-48px, -22px);
+  }
+}
+
+@keyframes signal-triangle {
+  0%, 64%, 100% {
+    opacity: 0;
+    transform: scale(0.5) translate(0, 0) rotate(0deg);
+  }
+  68% {
+    opacity: 1;
+  }
+  84% {
+    opacity: 0;
+    transform: scale(2) translate(26px, -34px) rotate(250deg);
+  }
 }

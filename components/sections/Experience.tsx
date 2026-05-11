@@ -10,7 +10,7 @@ const experiences = [
     role: 'Lead AI Engineer',
     period: '2025 - Present',
     location: 'United States',
-    description: "Building the GenAI platform from scratch. Architecting RAG systems with sub-2s latency, reducing operational time by 60% across 500+ stores.",
+    description: "Building GenAI platforms and RAG workflows for large-scale retail operations.",
     stack: ['LangChain', 'LangGraph', 'Bedrock', 'Databricks', 'FastAPI'],
     current: true,
   },

@@ -13,7 +13,7 @@ export async function GET() {
       <guid isPermaLink="true">${siteUrl}/blog/${post.slug}</guid>
       <description><![CDATA[${post.description}]]></description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-      <author>yenugaharika555@gmail.com (Harika Yenuga)</author>
+      <author>Harika Yenuga</author>
       ${post.tags.map((tag) => `<category>${tag}</category>`).join('\n      ')}
     </item>`
     )

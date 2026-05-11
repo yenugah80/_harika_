@@ -21,17 +21,24 @@ Personal portfolio website for Harika Yenuga - Data Science & AI professional.
 
 ```
 app/
-  page.tsx          # Home - Hero, About, Skills, CTA
-  work/page.tsx     # Professional experience & projects
-  writing/page.tsx  # Blog posts (from data/posts.ts)
-  contact/page.tsx  # 3D contact page
-  newsletter/page.tsx # Links to Substack & Medium
+  page.tsx            # Home route
+  work/page.tsx       # Professional experience and projects
+  blog/               # Blog index and post routes
+  contact/page.tsx    # Contact route
+  newsletter/page.tsx # Newsletter route
+  subscribe/page.tsx  # Newsletter signup route
 
 components/
-  pages/            # Full page components
-  sections/         # Section components (Hero, About, Skills, etc.)
-  ui/               # Reusable UI (Navigation, Footer, TiltCard)
-  animations/       # Animation wrappers (RevealOnScroll, PageTransition)
+  analytics/          # Analytics wiring
+  animations/         # Animation wrappers and visual effects
+  blog/               # Blog list and post rendering
+  newsletter/         # Newsletter signup and feed UI
+  pages/              # Full page compositions
+  sections/           # Section components (Hero, About, Skills, etc.)
+  ui/                 # Reusable UI (Navigation, Footer, TiltCard)
+
+content/blog/         # MDX blog posts
+lib/                  # Data loading and integration helpers
 ```
 
 ## Key Features
